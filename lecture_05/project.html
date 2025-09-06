@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Form</title>
+  </head>
+  <body>
+    <header>
+      <img
+        src="./pucit.jpg"
+        alt="PUCIT Logo"
+        style="align-items: center"
+        height="100"
+      />
+    </header>
+
+    <h1 style="text-align: center">PUCIT Registration Form</h1>
+    <p>Please fill out the form below to register yourself.</p>
+    <hr />
+
+    <form>
+      <!-- personal details section 👇 -->
+      <h2 style="text-align: center">Personal Details</h2>
+      <label for="userFname">First Name:</label>
+      <input
+        type="text"
+        name="userFname"
+        id="userFname"
+        placeholder="e.g., AR"
+        required
+      />
+      <br /><br />
+      <label for="userLname">Last Name</label>
+      <input
+        type="text"
+        name="userLname"
+        id="userLname"
+        placeholder="e.g., Gulshan"
+      />
+      <br /><br />
+      <label for="dob">Date Of Birth:</label>
+      <input type="date" name="dob" id="dob" />
+      <br /><br />
+      <label>Gender:</label>
+      <br />
+      <input type="radio" name="gender" id="male" value="male" />
+      <label for="male">Male</label>
+      <br />
+      <input type="radio" name="gender" id="female" value="female" />
+      <label for="female">Female</label>
+      <br />
+      <input type="radio" name="gender" id="other" value="other" />
+      <label for="other">Other</label>
+      <br /><br />
+
+      <!-- photo upload 👇 -->
+      <label>Upload Your Photo:</label>
+      <br />
+      <input type="file" name="file" />
+      <hr />
+
+      <!-- contact information 👇 -->
+      <h2 style="text-align: center">Contact Information</h2>
+      <label for="email">Email Address:</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="you@gmail.com"
+        required
+      />
+      <br /><br />
+      <label for="phone">Phone Number:</label>
+      <input
+        type="tel"
+        name="phone"
+        id="phone"
+        placeholder="e.g., +92-3288034644"
+        required
+      />
+      <br /><br />
+      <label for="address">Mailing Address:</label>
+      <br />
+      <textarea
+        name="address"
+        id="address"
+        placeholder="Street Address, City, State, Zip Code"
+        rows="10"
+        cols="40"
+      ></textarea>
+      <hr />
+
+      <!-- academic information 👇 -->
+      <h2 style="text-align: center">Academic Information</h2>
+      <label for="course">Select Your Course:</label>
+      <select name="course" id="course">
+        <option value="ds-121">Discrete Structures</option>
+        <option value="pb-100">Probability</option>
+        <option value="la-245">Linear Algebra</option>
+        <option value="ds-187">Data Structures</option>
+      </select>
+      <br /><br />
+
+      <label>Extra Curricular Activities:</label>
+      <br />
+      <input type="checkbox" name="sports" id="sports" value="sports" />
+      <label for="sports">Sports</label>
+      <br />
+
+      <input type="checkbox" name="music" id="music" value="music" />
+      <label for="music">Music & Arts</label>
+      <br />
+
+      <input
+        type="checkbox"
+        name="technology"
+        id="technology"
+        value="technology"
+      />
+      <label for="technology">Technology Clubs</label>
+      <br />
+
+      <input
+        type="checkbox"
+        name="volunteering"
+        id="volunteering"
+        value="volunteering"
+      />
+      <label for="volunteering">Volunteering</label>
+      <hr />
+
+      <!-- create account 👇 -->
+      <h2 style="text-align: center">Create Your Account</h2>
+      <label for="password">Create Password:</label>
+      <input type="password" name="password" id="password" />
+      <br /><br />
+
+      <label for="security">Security Question:</label>
+      <select name="security" id="security">
+        <option value="petsName">Whats was your first pet's name?</option>
+        <option value="favFood">What is your favorite food?</option>
+        <option value="favColour">What is your favorite colour?</option>
+      </select>
+      <br /><br />
+
+      <label for="secAnswer">Security Answer:</label>
+      <input type="text" name="secAnswer" id="secAnswer" />
+      <br /><br />
+
+      <input type="checkbox" name="termCheck" id="termCheck" value="checked" />
+      <label for="termCheck">I agree to the Terms and Conditions.</label>
+      <br />
+
+      <hr />
+
+      <!-- submit or clear form 👇 -->
+      <button type="submit">Register</button>
+      <button type="reset">Reset</button>
+    </form>
+  </body>
+</html>
