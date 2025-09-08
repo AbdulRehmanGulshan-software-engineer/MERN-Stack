@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <h1>This is our Contact Page.</h1>
+      <ul>
+        <li><a href="./homepage.html">Homepage</a></li>
+        <li><a href="./contact.html">Contact Us</a></li>
+        <li><a href="./course.html">Courses</a></li>
+        <li><a href="./about.html">About Us</a></li>
+      </ul>
+    </header>
+    <main>
+        <img src="./contact.jpeg" alt="Contact Us" height="300" width="400">
+      <h2>You Can Contact Us Directly:</h2>
+
+      <!-- Form 👇 -->
+      <form>
+        <label for="Uname">Name:</label>
+        <input type="text" name="Uname" id="Uname" />
+
+        <br /><br />
+        <label for="Uemail">Email:</label>
+        <input type="email" name="Uemail" id="Uemail" />
+
+        <br /><br />
+        <label for="Ucontact">Contact No:</label>
+        <input type="tel" name="Ucontact" id="Ucontact" />
+
+        <br /><br />
+        <label>Select Gender:</label>
+        <br />
+        <input type="radio" name="gender" id="male" value="male" />
+        <label for="male">Male</label>
+        <br />
+        <input type="radio" name="gender" id="female" value="female" />
+        <label for="female">Female</label>
+
+        <br /><br />
+        <label for="Course">Select The Course</label>
+        <select name="Course" id="Course">
+          <option value="web_dev">Web Development</option>
+          <option value="ai_course">Ai Integration</option>
+          <option value="Mobile_dev">Mobile App Development</option>
+        </select>
+
+        <br /><br />
+        <button type="submit">Register</button>
+        <button type="reset">Reset Form</button>
+      </form>
+    </main>
+    <footer>
+      <p>Copyright &copy; All rights are reserved.</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is Our Media Website.</h1>
+    <!-- Integrating Audio 👇 first method-->
+    <audio src="./wavy.mp3" controls></audio>
+    <!-- Integrating Video 👇 first method-->
+    <video src="./rohit.mp4" height="300" controls></video>
+
+    <!-- but these methods are not good , see best method 👇 (it can give link for all supports)-->
+    <audio controls>
+        <source src="./wavy.mp3" type="audio/mp3">
+        <!-- here i can add another source link -->
+        your browser does't support the audio element.
+    </audio>
+    
+    <video controls height="300">
+        <source src="./rohit.mp4" type="Video/mp4">
+    </video>
+
+    <!-- youtube video integration/embedding, for this we use iframe-->
+    <iframe src="https://www.youtube.com/embed/NGYp1zCBthk" allowfullscreen></iframe>
+    <iframe src="https://youtube.com/embed/1pcikNlDB-4?si=fH7b4MeA3f7C1wsm" allowfullscreen></iframe>
+
+
+</body>
+</html>
