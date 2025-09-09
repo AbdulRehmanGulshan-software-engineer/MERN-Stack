@@ -1,0 +1,75 @@
+/* Selecting On The Bases Of ID(unique for every element) , # based 👇*/
+/* #first{
+    background-color: blueviolet;
+}
+#second{
+    background-color: bisque;
+} */
+
+/* Class Based Selection, . based 👇 */
+.third {
+  background-color: cornflowerblue;
+}
+.fourth{
+    background-color: brown;
+}
+
+/* Group Based Selection 👇 */
+/* h1 , .fourth , #second {
+  background-color: rgb(147, 147, 163);
+} */
+
+/* h1{
+    background-color: rgba(208, 133, 4, 0.4);
+}
+h2{
+    background-color: hsla(120, 34%, 50%, 0.461);
+} */
+
+/* h1{
+    background-color: #639747;
+} */
+
+/* Fonts 👇 */
+/* h1 {
+  font-size: 50px;
+} */
+
+ul {
+  font-size: 15px;
+}
+
+/* li{
+    font-size: 1em;
+} */
+/* html{
+    font-size: 20px;
+}
+h2{
+    font-size: 2rem;
+} */
+
+/* viewport width 👇*/
+h2 {
+  font-size: 4vw;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: 900; /* 100 - 900 */
+  font-style: italic;
+}
+
+/* viewport height 👇 */
+/* li{
+    font-size: 5vh;
+} */
+
+li {
+  font-size: 80%; 
+  /*direct parent base pe size */
+}
+
+/* Online Fonts Usage 👇 */
+h1{
+    font-family: "Libertinus Keyboard", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
