@@ -1,0 +1,31 @@
+/* default margin and padding */
+/* * {
+  margin: 0px;
+  padding: 0px;
+} */
+h1 {
+  background-color: rgb(213, 127, 22);
+  height: 300px;
+  width: 300px;
+  border: 10px solid orange;
+  padding: 20px;
+  box-sizing: content-box;
+  /* display: inline;
+  display: inline-block; */
+}
+h2 {
+  background-color: aqua;
+  height: 300px;
+  width: 300px;
+  border: 10px solid brown;
+  padding: 20px;
+  box-sizing: border-box;
+  /* display: inline-block; */
+}
+span {
+  /* background-color: aqua; */
+  height: 200px;
+  width: 200px;
+  padding: 20px;
+  margin: 30px;
+}
