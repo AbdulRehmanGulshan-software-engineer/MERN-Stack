@@ -1,0 +1,63 @@
+// callback hell
+
+// zomato application
+
+const OrderDetail = {
+    orderID: "123123",
+    food: ["Fish", "Biryani", "Pulao", "Mutton"],
+    cost: "6000",
+    customer_name: "Abdul Rehman Gulshan",
+    customer_location: "Lahore",
+    restaurant_location: "Park View City"
+}
+
+function placeOrder(orderDetails, callback) {
+    console.log(`${orderDetails.cost} payment is in progress.`)
+    setTimeout(() => {
+        console.log("payment is recieved and order get placed.")
+        orderDetails.status = true;     //payment is cleared
+        callback(orderDetails);
+    }, 3000)
+}
+
+function preparingOrder(orderDetails, callback) {
+    console.log(`your food preparation started.
+        Order Details`);
+    for (let arr of orderDetails.food) {
+        console.log(arr);
+    }
+    setTimeout(() => {
+        console.log("Your order is now prepared.")
+        //give token to the delivery boy
+        orderDetails.token = 123;
+        callback(orderDetails);
+    }, 3000)
+}
+
+function pickupOrder(orderDetails, callback) {
+    console.log(`Delivery Boy Going To ${orderDetails.restaurant_location}`);
+    setTimeout(() => {
+        console.log("I have picked up the order.")
+        orderDetails.recieved = true;
+        callback(orderDetails);
+    }, 3000)
+}
+
+function deliverOrder(orderDetails) {
+    console.log(`Hi ${orderDetails.customer_name} I am on my way toward ${orderDetails.customer_location} to deliver your order.`);
+    setTimeout(() => {
+        console.log("Order Delivered Successfully.");
+    })
+}
+
+function rating() {
+
+}
+placeOrder(OrderDetail, () => {
+    preparingOrder(OrderDetail, () => {
+        pickupOrder(OrderDetail, () => {
+            deliverOrder(OrderDetail);
+        });
+    });
+});
+// preparingOrder();
