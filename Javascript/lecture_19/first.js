@@ -178,17 +178,44 @@ function deliverOrder(orderDetails) {
 }
 
 
-placeOrder(orderDetails)
-    .then((orderDetails) => preparingOrder(orderDetails))
-    .then((orderDetails) => pickupOrder(orderDetails))
-    .then((orderDetails) => deliverOrder(orderDetails))
-    .then((orderDetails) => {
-        console.log(orderDetails);
-    })
-    .catch((error) => {
-        console.log(`Error: ${error.message}`);
-    })
-    // in last comes finally that must must runs
-    .finally(()=>{
-        console.log("I am doing cleanup.");
-    })
+// placeOrder(orderDetails)
+//     .then((orderDetails) => preparingOrder(orderDetails))
+//     .then((orderDetails) => pickupOrder(orderDetails))
+//     .then((orderDetails) => deliverOrder(orderDetails))
+//     .then((orderDetails) => {
+//         console.log(orderDetails);
+//     })
+//     .catch((error) => {
+//         console.log(`Error: ${error.message}`);
+//     })
+//     // in last comes finally that must must runs
+//     .finally(()=>{
+//         console.log("I am doing cleanup.");
+//     })
+
+//will use async function instead 👇
+async function ordering() {
+    try {
+        const response1 = await placeOrder(orderDetails);
+        const response2 = await preparingOrder(response1);
+        const response3 = await pickupOrder(response2);
+        const response4 = await deliverOrder(response3);
+        console.log(response4);
+    }
+    catch (error) {
+        console.log("Error: ", error);
+    }
+}
+// function called
+ordering();
+
+//sometimes we deal with such situations 👇
+async function userDetail() {
+    // const comment = await fetch("userComment");
+    // const photos = await fetch("userPhotos");
+    // const chat = await fetch("userChat");
+    //it is sequential but here i want parallel
+    // we will use this 👇
+    const [comment, photos, chat] = await Promise.all(fetch("userComment"), fetch("userPhotos"), fetch("userChat"));
+    //its real world use is when we need different different database connections
+}

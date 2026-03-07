@@ -37,7 +37,11 @@
 
 //here comes async function 👇
 async function github() {
+    try{
     const resp = await fetch("https://api.github.com/users");
+    if(!resp.ok){
+        throw new Error("Data is not present");
+    }
     const dat = await resp.json();
     const parent = document.getElementById("first");
     // console.log(dat);
@@ -55,6 +59,10 @@ async function github() {
         element.append(image,userName,anchor);
         parent.append(element);
     }
+}
+catch(error){
+    console.log(error);
+}
 }
 
 github();
