@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Google Fonts cdn-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <input
+        type="text"
+        name="userInput"
+        id="userInput"
+        placeholder="Enter Text or URL"
+      />
+      <div class="options">
+        <select name="sizeoption" class="sizeOptions">
+          <option value="100" selected>100 &times; 100</option>
+          <option value="200">200 &times; 200</option>
+          <option value="300">300 &times; 300</option>
+        </select>
+        <input type="color" id="BGcolor" class="color-inp" />
+        <input type="color" id="FGcolor" class="color-inp" />
+      </div>
+      <div class="box">
+        <button id="submit" disabled>Generate</button>
+        <a href="#" id="download">Download</a>
+      </div>
+      <div class="container"></div>
+    </div>
+
+    <!-- QR code cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <!-- javascript file -->
+    <script src="./script.js"></script>
+    <footer class="footer">
+      <p>QR Generator | JS Learning Project By Abdul Rehman Gulshan</p>
+      <div class="social-links">
+        <a href="https://pucit.edu.pk/" target="_blank">PUCIT</a>
+        |
+        <a
+          href="https://github.com/AbdulRehmanGulshan-software-engineer"
+          target="_blank"
+          >Github</a
+        >
+        |
+        <a
+          href="https://www.linkedin.com/in/abdul-rehman-gulshan-879909286/"
+          target="_blank"
+          >Linkedin</a
+        >
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,141 @@
+/* css reset */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  height: 100vh;
+  background: linear-gradient(#f3f3fb 50%, #377dff 50%);
+}
+.wrapper {
+  background-color: #ffffff;
+  padding: 5em 4em;
+  position: relative;
+  width: 31.25em;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  border-radius: 0.6em;
+  box-shadow: 0 25px 50px rgba(3, 21, 55);
+}
+#userInput {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #000000;
+  padding: 0.5em 0em;
+  font-size: 1em;
+  outline: none;
+}
+.options {
+  margin-top: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+select {
+  appearance: none; /* removes the browser's default styling */
+  width: 8em;
+  border: 1px solid black;
+  padding: 0.45em 0.9em;
+  font-size: 1.25em;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  background-color: #377dff;
+  border: none; /* removes the browser's default styling */
+  color: #ffffff;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.5em center;
+  outline: none;
+  border-radius: 0.3em;
+}
+select::-ms-expand {
+  display: none;
+}
+select option {
+  background-color: #ffffff;
+  color: #377dff;
+  letter-spacing: 0.6em;
+  font-weight: 400;
+  font-size: 1.12em;
+}
+/* no need of this */
+.selected {
+  display: none;
+}
+.color-inp {
+  -webkit-appearance: none; /* remove default browser styling */
+  background-color: transparent;
+  width: 3.1em;
+  height: 3.4em;
+}
+/* :: is called a pseudo-element.It selects part of an element */
+/* Chrome, Safari, Edge (Blink/WebKit engine) */
+.color-inp::-webkit-color-swatch {
+  border-radius: 0.3em;
+  border: 0.8em solid black;
+}
+/* Firefox (Mozilla engine) */
+.color-inp::-moz-color-swatch {
+  border-radius: 0.3em;
+  border: 0.8em solid black;
+}
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.box button,
+.box a {
+  font-size: 1em;
+  padding: 0.8em 2em;
+  border-radius: 0.5em;
+  margin-top: 1em;
+}
+.box button:disabled {
+  background-color: transparent;
+  color: #a3aab6;
+  border: 0.18em solid #a3aab6;
+}
+.box button {
+  background-color: transparent;
+  color: #377dff;
+  border: 0.18em solid #377dff;
+}
+.box a {
+  background-color: #377dff;
+  color: #f3f3fb;
+  text-decoration: none;
+  border: 0.18em solid #a3aab6;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.18em;
+}
+.hide {
+  display: none;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 0.8em;
+  background: #377dff;
+  color: white;
+  font-size: 0.9em;
+}
+.social-links{
+  margin-top: 0.2em;
+}
+.social-links a{
+color: white;
+text-decoration: none;
+font-weight: 500;
+}
+.social-links a:hover{
+text-decoration: underline;
+}
