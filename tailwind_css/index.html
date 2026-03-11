@@ -16,13 +16,173 @@
         --breakpoint-mr: 100rem;
         --breakpoint-kn: 650px;
       }
+      @theme {
+        --color-orange: #eb6d20;
+        /* second method direct text-[#eb6d20] in class */
+      }
     </style>
   </head>
   <body>
-    <div class="container bg-red-900">
-      <h1 class="text-3xl text-center text-red-200 py-5 kn:py-10">
+    <div class="max-w-[1300px] mx-auto bg-[orange] text-center text-white p-[50px]">Welcome To Tailwind CSS</div>
+    <div class="container bg-red-900 mx-auto px-0">
+      <h1 class="text-3xl text-center text-[#eb6d20] py-5 kn:py-10">
         Welcome To Gulshan World.
       </h1>
+    </div>
+    <div
+      class="py-5 max-w-[1600px] bg-red-500 text-white mx-auto text-center grid ms:grid-cols-4 gap-5"
+    >
+      <div class="bg-[green] py-5 text-center col-span-2 max-w-[400px]">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
+        necessitatibus fugiat quae ut quis sit dolores commodi totam quas quia
+        pariatur, error autem odit qui tenetur unde exercitationem molestiae
+        modi?
+      </div>
+      <div class="bg-[green] py-5 text-center">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
+        necessitatibus fugiat quae ut quis sit dolores commodi totam quas quia
+        pariatur, error autem odit qui tenetur unde exercitationem molestiae
+        modi?
+      </div>
+      <div class="bg-[green] py-5 text-center col-start-1 col-end-5">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
+        necessitatibus fugiat quae ut quis sit dolores commodi totam quas quia
+        pariatur, error autem odit qui tenetur unde exercitationem molestiae
+        modi?
+      </div>
+      <div class="bg-[green] py-5 text-center">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
+        necessitatibus fugiat quae ut quis sit dolores commodi totam quas quia
+        pariatur, error autem odit qui tenetur unde exercitationem molestiae
+        modi?
+      </div>
+      <div class="bg-[green] py-5 text-center">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
+        necessitatibus fugiat quae ut quis sit dolores commodi totam quas quia
+        pariatur, error autem odit qui tenetur unde exercitationem molestiae
+        modi?
+      </div>
+      <div class="bg-[green] py-5 text-center">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
+        necessitatibus fugiat quae ut quis sit dolores commodi totam quas quia
+        pariatur, error autem odit qui tenetur unde exercitationem molestiae
+        modi?
+      </div>
+      <div class="bg-[green] py-5 text-center">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
+        necessitatibus fugiat quae ut quis sit dolores commodi totam quas quia
+        pariatur, error autem odit qui tenetur unde exercitationem molestiae
+        modi?
+      </div>
+      <div class="bg-[green] py-5 text-center">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
+        necessitatibus fugiat quae ut quis sit dolores commodi totam quas quia
+        pariatur, error autem odit qui tenetur unde exercitationem molestiae
+        modi?
+      </div>
+    </div>
+
+  
+    <!-- grid template row 👇 -->
+
+
+    <div class="max-w-[1320px] mx-auto grid grid-rows-3 grid-flow-col  mx-auto gap-5 py-5 px-5">
+      <div class="bg-[olive] py-5 text-center">
+        1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+        veritatis fugiat voluptatum corrupti ut beatae esse cupiditate aut sint
+        quos. Beatae nihil sunt molestias quae ex expedita consequuntur,
+        distinctio eaque?
+      </div>
+      <div class="bg-[olive] py-5 text-center row-span-2">
+        2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+        veritatis fugiat voluptatum corrupti ut beatae esse cupiditate aut sint
+        quos. Beatae nihil sunt molestias quae ex expedita consequuntur,
+        distinctio eaque?
+      </div>
+      <div class="bg-[olive] py-5 text-center">
+        3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+        veritatis fugiat voluptatum corrupti ut beatae esse cupiditate aut sint
+        quos. Beatae nihil sunt molestias quae ex expedita consequuntur,
+        distinctio eaque?
+      </div>
+      <div class="bg-[olive] py-5 text-center">
+        4 Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+        veritatis fugiat voluptatum corrupti ut beatae esse cupiditate aut sint
+        quos. Beatae nihil sunt molestias quae ex expedita consequuntur,
+        distinctio eaque?
+      </div>
+      <div class="bg-[olive] py-5 text-center">
+        5 Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+        veritatis fugiat voluptatum corrupti ut beatae esse cupiditate aut sint
+        quos. Beatae nihil sunt molestias quae ex expedita consequuntur,
+        distinctio eaque?
+      </div>
+      <div class="bg-[olive] py-5 text-center row-start-2">
+        6 Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+        veritatis fugiat voluptatum corrupti ut beatae esse cupiditate aut sint
+        quos. Beatae nihil sunt molestias quae ex expedita consequuntur,
+        distinctio eaque?
+      </div>
+      <div class="bg-[olive] py-5 text-center">
+        7 Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+        veritatis fugiat voluptatum corrupti ut beatae esse cupiditate aut sint
+        quos. Beatae nihil sunt molestias quae ex expedita consequuntur,
+        distinctio eaque?
+      </div>
+      <div class="bg-[olive] py-5 text-center row-start-2">
+        8 Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+        veritatis fugiat voluptatum corrupti ut beatae esse cupiditate aut sint
+        quos. Beatae nihil sunt molestias quae ex expedita consequuntur,
+        distinctio eaque?
+      </div>
+      <div class="bg-[olive] py-5 text-center">
+        9 Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+        veritatis fugiat voluptatum corrupti ut beatae esse cupiditate aut sint
+        quos. Beatae nihil sunt molestias quae ex expedita consequuntur,
+        distinctio eaque?
+      </div>
+      <div class="bg-[olive] py-5 text-center">
+        10 Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+        veritatis fugiat voluptatum corrupti ut beatae esse cupiditate aut sint
+        quos. Beatae nihil sunt molestias quae ex expedita consequuntur,
+        distinctio eaque?
+      </div>
+      <div class="bg-[olive] py-5 text-center">
+        11 Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+        veritatis fugiat voluptatum corrupti ut beatae esse cupiditate aut sint
+        quos. Beatae nihil sunt molestias quae ex expedita consequuntur,
+        distinctio eaque?
+      </div>
+      <div class="bg-[olive] py-5 text-center">
+        12 Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+        veritatis fugiat voluptatum corrupti ut beatae esse cupiditate aut sint
+        quos. Beatae nihil sunt molestias quae ex expedita consequuntur,
+        distinctio eaque?
+      </div>
+      <div class="bg-[olive] py-5 text-center">
+        13 Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+        veritatis fugiat voluptatum corrupti ut beatae esse cupiditate aut sint
+        quos. Beatae nihil sunt molestias quae ex expedita consequuntur,
+        distinctio eaque?
+      </div>
+      <div class="bg-[olive] py-5 text-center">
+        14 Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+        veritatis fugiat voluptatum corrupti ut beatae esse cupiditate aut sint
+        quos. Beatae nihil sunt molestias quae ex expedita consequuntur,
+        distinctio eaque?
+      </div>
+      <div class="bg-[olive] py-5 text-center">
+        15 Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+        veritatis fugiat voluptatum corrupti ut beatae esse cupiditate aut sint
+        quos. Beatae nihil sunt molestias quae ex expedita consequuntur,
+        distinctio eaque?
+      </div>
+      <div class="bg-[olive] py-5 text-center">
+        16 Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+        veritatis fugiat voluptatum corrupti ut beatae esse cupiditate aut sint
+        quos. Beatae nihil sunt molestias quae ex expedita consequuntur,
+        distinctio eaque?
+      </div>
     </div>
   </body>
 </html>
