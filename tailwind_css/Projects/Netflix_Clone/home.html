@@ -10,25 +10,68 @@
   <body>
     <!-- banner section start -->
      <section class="w-full min-h-screen bg-[url('./images/header-img.jpg')] bg-center bg-cover">
-        <div class="w-full min-h-screen bg-[rgba(0,0,0,0.5)]">
+        <div class="w-full min-h-screen bg-[rgba(0,0,0,0.75)]">
             <header class="max-w-[1170px] mx-auto">
                 <div class="grid sm:grid-cols-2 grid-cols-[30%_auto] px-5 items-center">
                     <figure>
-                        <img src="./images/logo.png" alt="Netflix Logo" class="w-[200px]">
+                        <img src="./images/logo.png" alt="Netflix Logo" class="w-[120px] md:w-[200px] ">
                     </figure>
-                    <div class="flex justify-end pr-0 gap-3 sm:gap-6">
-                        <div>
-                            <select name="" id="" class="bg-black text-white rounded-[5px] border-[1px] border-[white] text-xs sm:text-sm px-2 py-1 sm:px-4 sm:py-2">
+                    <div class="flex justify-end pr-0 gap-3">
+                        <div class="relative">
+                            <select name="" id="" class="bg-black text-white rounded-[5px] border-[1px] border-[white] text-xs md:text-sm px-2 py-1 md:px-4 md:py-2 pl-1 pr-6">
                                 <option value="">English</option>
                                 <option value="">Hindi</option>
                             </select>
                         </div>
-                        <button class="bg-red-600 text-white text-xs sm:text-sm px-2 py-1 sm:px-4 sm:py-2 rounded">Sign In</button>
+                        <button class="bg-red-600 text-white text-xs md:text-sm px-2 py-1 md:px-4 md:py-2 rounded">Sign In</button>
+                    </div>
+                </div>
+                <div class="max-w-[1170px] mx-auto sm:py-[150px] py-[90px] sm:px[40px] text-center text-white">
+                    <h1 class="sm:text-[45px] text-[30px] font-bold" >Unlimited movies, TV shows, and more</h1>
+                    <h4 class="text-[15px] py-[10px] font-bold">Starts at Rs 250. Cancel anytime.</h4>
+                    <h4 class="text-[15px] ]">Ready to watch? Enter your email to create or restart your membership.</h4>
+                    <div class="max-w-[700px] sm:px-[10px] px-[40px] mx-auto py-20">
+                        <form action="" class="grid sm:grid-cols-[70%_auto] gap-3">
+                            <input type="text" name="" id="" class="bg-[black]/60 border-[1px] border-gray-700 h-[50px] pl-[20px]" placeholder="Email Address">
+                            <button class="bg-red-600 h-[40px] sm:h-[50px] w-[200px] mx-auto sm:mx-0 hover:bg-red-800">Get Started</button>
+                        </form>
                     </div>
                 </div>
             </header>
-        </div>
      </section>
     <!-- banner section end -->
+
+    <!-- Enjoy On TV section start-->
+     <section class="w-[100%] bg-[black] border-t-[8px] border-t-[#ccc] sm:py-[100px] py-[50px]">
+        <div class="max-w-[1170px] mx-auto px-[15px]">
+            <div class="grid sm:grid-cols-2 sm:grid-cols-1 items-center">
+                <div class="text-white">
+                    <h2 class="text-[50px] font-bold">Enjoy on your TV</h2>
+                    <p class="sm:text-[25px] text-[20px] pt-[30px]">Watch on smart TVs, PlayStation, Xbox, Chromecast,<br> Apple TV, players and more.</p>
+                </div>
+                <figure class="relative max-w-[700px] mx-auto">
+                    <video class="absolute top-[20%] left-[15%] w-[70%]" autoplay muted loop >
+                        <source src="../../../html_css/lecture_06/rohit.mp4">
+                    </video>
+                    <img src="./images/tv.png" alt="" class="relative">
+                </figure>
+            </div>
+        </div>
+     </section>
+    <!-- Enjoy On TV section end-->
+
+    <!-- Download Section start -->
+     <section class="w-[100%] bg-[black] border-t-[8px] border-t-[#cccc] sm:py-[100px] py-[50px]">
+        <div class="grid sm:grid-cols-2 grid-cols-1 items-center">
+            <figure>
+                <img src="../../../html_css/lecture_02/src/images/cat.png" alt="netflix photo" class="block mx-auto sm:w-[50%] w-[150px] shadow">
+            </figure>
+            <div class="text-white sm:mr-[50px] ml-[20px]">
+                <h1 class="sm:text-[50px] text-[30px] font-bold">Download your shows to watch offline</h1>
+                <h4 class="sm:text-[25px] text-[20px] pt-[10px]">Save your favorites easily and always have something to watch.</h4>
+            </div>
+        </div>
+     </section>
+    <!-- Download Section end -->
   </body>
 </html>
