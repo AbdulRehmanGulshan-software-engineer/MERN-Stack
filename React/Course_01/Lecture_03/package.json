@@ -1,0 +1,20 @@
+{
+  "name": "lecture_03",
+  "version": "1.0.0",
+  "description": "\"My first react app\"",
+  "main": "app.js",
+  "scripts": {
+    "dev":"vite",
+    "build": "vite build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "vite": "^8.0.0"
+  }
+}
