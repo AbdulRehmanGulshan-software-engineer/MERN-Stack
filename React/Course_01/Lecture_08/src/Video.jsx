@@ -1,0 +1,1 @@
+//see notes to understand how we can use useRef for obtaining access on actual dom for making video player.
