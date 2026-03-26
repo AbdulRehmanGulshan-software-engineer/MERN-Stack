@@ -1,0 +1,20 @@
+.AppleCounter{
+    display: flex;
+    max-width: fit-content;
+    gap: 300px;
+    flex-wrap: wrap;
+    align-items: center;
+    text-align: center;
+    margin: 50px auto;
+}
+
+.AppleCounter div{
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.AppleCounter div button img {
+    width: 15px; 
+    height: 15px;
+}

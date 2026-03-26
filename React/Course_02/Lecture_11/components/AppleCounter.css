@@ -1,0 +1,13 @@
+.AppleCounter {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1000;
+  margin: 0 auto;
+  margin-top: 4rem;
+  align-items: center;
+  text-align: center;
+}
+
+button img {
+  max-width: 40px;
+}
