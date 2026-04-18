@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import './style.css';
 
+// Import Image from "url:./assets/images/arrow-left.svg"    //other way to import and use image
+
 // console.log(import.meta.url);
 const leftArrow = new URL('./assets/images/right-arrow.png', import.meta.url);
 const rightArrow = new URL('./assets/images/arrow.png', import.meta.url)

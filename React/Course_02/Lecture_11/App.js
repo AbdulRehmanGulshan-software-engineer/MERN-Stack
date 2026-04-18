@@ -8,7 +8,10 @@ console.log(new URL('./assets/images/right-arrow.png', import.meta.url));
 export default function App() {
   return (
     <div>
-      <AppleCounter></AppleCounter>
+      <h1 onClick={(e) => { console.log(e) }}>Hello</h1>
+      <AppleCounter onClick={(e) => {   //here we cannot apply event on component,will be pass as props
+        console.log(e);
+      }} />
     </div>
   );
 }

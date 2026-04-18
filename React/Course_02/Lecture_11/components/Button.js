@@ -1,7 +1,8 @@
-import React from 'react'
-
-export default function Button({imageURL}) {
+import React from "react"
+export default function Button({ imageURL, buttonName ,onClick}) {
   return (
-    <button><img src={imageURL} alt="button" /></button>
+    <button onClick={onClick} title={buttonName}>
+      <img src={imageURL} alt={buttonName}/>
+    </button>
   )
 }
