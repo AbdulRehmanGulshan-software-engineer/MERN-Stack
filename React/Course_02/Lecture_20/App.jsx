@@ -17,7 +17,7 @@ export default function App() {
           <SearchMenu />
         </div>
       </main>
-      <CountriesList search={search}/>
+      {search === "unmount" ? "" : <CountriesList search={search} />}
     </>
   );
 }
