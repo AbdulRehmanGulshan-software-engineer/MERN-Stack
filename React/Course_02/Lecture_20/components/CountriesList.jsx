@@ -2,7 +2,9 @@ import React from "react";
 import countriesData from "../countriesData";
 import CountryCard from "./CountryCard";
 
-export default function CountriesList() {
+export default function CountriesList({ search }) {
+  const filteredData = countriesData.filter((country) =>
+    country.name.common.toLowerCase().includes(search.toLowerCase()));
   // const array = [
   //   <CountryCard />,
   //   <CountryCard />,
@@ -10,7 +12,7 @@ export default function CountriesList() {
   //   <CountryCard />,
   //   <CountryCard />,
   // ];
-  const array = countriesData.map((country, i) => {
+  const array = filteredData.map((country, i) => {
     //giving key by this method is not good
     // console.log(country);
     return (
