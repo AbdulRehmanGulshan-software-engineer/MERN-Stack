@@ -5,19 +5,22 @@ import SearchBar from "./components/SearchBar";
 import SearchMenu from "./components/SearchMenu";
 import CountriesList from "./components/CountriesList";
 import { useState } from "react";
+import { Outlet } from "react-router-dom";
 
 export default function App() {
   const [search, setSearch] = useState("");
   return (
     <>
       <Header />
-      <main>
+      <Outlet />
+      {/* <Header /> */}
+      {/* <main>
         <div className="search-filter-container">
           <SearchBar search={search} setSearch={setSearch} />
           <SearchMenu />
         </div>
-      </main>
-      {search === "unmount" ? "" : <CountriesList search={search} />}
+        {search === "unmoun t" ? "" : <CountriesList search={search} />}
+      </main> */}
     </>
   );
 }

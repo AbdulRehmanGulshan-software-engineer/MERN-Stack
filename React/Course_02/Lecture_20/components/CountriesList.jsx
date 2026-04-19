@@ -13,14 +13,14 @@ export default function CountriesList({ search }) {
       .then((data) => {
         setCountriesData(data);
       });
-    const intervalID = setInterval(() => {
-      console.log("running countries component");
-    }, 1000);
-    // console.log(intervalID);
-    return () => {
-      clearInterval(intervalID) 
-      // console.log("cleaning up");
-    };
+    // const intervalID = setInterval(() => {
+    //   console.log("running countries component");
+    // }, 1000);
+    // // console.log(intervalID);
+    // return () => {
+    //   clearInterval(intervalID) 
+    //   // console.log("cleaning up");
+    // };
   }, []);
   // //fetching data through api 👇
   // const [countriesData, setCountriesData] = useState([]);
@@ -62,7 +62,7 @@ export default function CountriesList({ search }) {
   // console.log(array);
   return (
     <>
-      <button onClick={() => setCountriesData([])}>Remove all countries</button>
+      {/* <button onClick={() => setCountriesData([])}>Remove all countries</button> */}
       <div className="countries-container">{array}</div>
     </>
   );
