@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import countriesData from "../countriesData";
 import CountryCard from "./CountryCard";
+import CountriesListShimmer from "./CountriesListShimmer";
 
 export default function CountriesList({ search }) {
   //using use effect to avoid refetching
@@ -63,7 +64,7 @@ export default function CountriesList({ search }) {
   return (
     <>
       {/* <button onClick={() => setCountriesData([])}>Remove all countries</button> */}
-      <div className="countries-container">{array}</div>
+      {!countriesData.length? <CountriesListShimmer/> : <div className="countries-container">{array}</div>}
     </>
   );
 }
