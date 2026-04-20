@@ -1,58 +1,73 @@
 import React, { useEffect, useState } from "react";
 import "./CountryDetail.css";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 export default function CountryDetail() {
-  // const countryName = new URLSearchParams(location.search).get("name");
+  // // const countryName = new URLSearchParams(location.search).get("name");
   const params = useParams();
   const countryName = params.country;
   // console.log(countryName);
 
+  //passing data logic here 👇
+  const { state } = useLocation();
+  // console.log(state);
+
   const [CountryData, setCountryData] = useState(null);
   const [NotFound, setNotFound] = useState(false);
+  // console.log(CountryData);
+
+  function updateCountryData(data) {
+    setCountryData({
+      alt: data.flags.alt,
+      image: data.flags.svg,
+      name: data.name.common,
+      nativeName: Object.values(data.name.nativeName)[0].common,
+      population: data.population,
+      region: data.region,
+      subregion: data.subregion,
+      capital: data.capital,
+      tld: data.tld[0],
+      currencies: Object.values(data.currencies)
+        .map((currency) => currency.name)
+        .join(", "),
+      languages: Object.values(data.languages).join(", "),
+      // borders: Object.values(data.borders).join(", "),
+      borders: [],
+    });
+
+    if (!data.borders) {
+      data.borders = [];
+    }
+
+    Promise.all(
+      data.borders.map((border) => {
+        return fetch(`https://restcountries.com/v3.1/alpha/${border}`)
+          .then((res) => res.json())
+          .then(([borderCountry]) => borderCountry.name.common);
+      }),
+    ).then((borders) => {
+      setCountryData((prevState) => ({
+        ...prevState,
+        borders,
+      }));
+      // console.log(allBordersName);
+    });
+  }
 
   useEffect(() => {
-    console.log("hii");
+    if (state) {
+      updateCountryData(state);
+      return;
+    }
+
     fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`)
       .then((res) => res.json())
       .then(([data]) => {
-        console.log(data);
-        setCountryData({
-          alt: data.flags.alt,
-          image: data.flags.svg,
-          name: data.name.common,
-          nativeName: Object.values(data.name.nativeName)[0].common,
-          population: data.population,
-          region: data.region,
-          subregion: data.subregion,
-          capital: data.capital,
-          tld: data.tld[0],
-          currencies: Object.values(data.currencies)[0].name,
-          languages: Object.values(data.languages).join(", "),
-          // borders: Object.values(data.borders).join(", "),
-          borders: [],
-        });
-
-        if (!data.borders) {
-          data.borders = [];
-        }
-
-        Promise.all(
-          data.borders.map((border) => {
-            return fetch(`https://restcountries.com/v3.1/alpha/${border}`)
-              .then((res) => res.json())
-              .then(([borderCountry]) => borderCountry.name.common);
-          }),
-        ).then((allBordersName) => {
-          setCountryData((prevState) => ({
-            ...prevState,
-            borders: allBordersName,
-          }));
-          console.log(allBordersName);
-        });
+        // console.log(data);
+        updateCountryData(data);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((err) => {
+        console.log(err);
         setNotFound(true);
       });
   }, [countryName]);
@@ -94,7 +109,7 @@ export default function CountryDetail() {
               </p>
 
               <p>
-                <b>Capital: {CountryData.capital}</b>
+                <b>Capital: {CountryData.capital.join(", ")}</b>
               </p>
 
               <p>
@@ -109,13 +124,14 @@ export default function CountryDetail() {
                 <b>Languages: {CountryData.languages}</b>
               </p>
             </div>
-
             {CountryData.borders.length !== 0 && (
               <div className="border-countries">
                 <b>Border Countries:</b>
                 {/* {CountryData.borders} */}
                 {CountryData.borders.map((border) => (
-                  <Link to={`/${border}`}>{border}</Link>
+                  <Link key={border} to={`/${border}`}>
+                    {border}
+                  </Link>
                 ))}
               </div>
             )}
