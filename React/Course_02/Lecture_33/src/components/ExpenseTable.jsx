@@ -47,7 +47,7 @@ export default function ExpenseTable({ expenses }) {
         </thead>
         <tbody>
           {expenses.map(({ id, title, category, amount }) => (
-            <tr id={id}>
+            <tr key={id}>
               <td>{title}</td>
               <td>{category}</td>
               <td>PKR {amount}</td>

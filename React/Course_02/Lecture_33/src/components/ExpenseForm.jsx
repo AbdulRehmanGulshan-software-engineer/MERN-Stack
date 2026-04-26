@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../App.css";
+import Input from "./input";
+import Select from "./Select";
 
 export default function ({ setExpenses }) {
   //single state controlling all three
@@ -7,6 +9,7 @@ export default function ({ setExpenses }) {
     title: "",
     category: "",
     amount: "",
+    email: "",
   });
 
   // const titleRef = useRef(null);
@@ -18,19 +21,42 @@ export default function ({ setExpenses }) {
   // });
 
   const [errors, setErrors] = useState({});
+  const errorsData = {};
+
+  const validationConfig = {
+    title: [
+      { required: true, message: "Please enter title" },
+      { minLength: 5, message: "Title should be at least 5 characters long" },
+    ],
+    category: [{ required: true, message: "Please select category" }],
+    amount: [{ required: true, message: "Please enter an amount" }],
+    email: [
+      { required: true, message: "Please enter an email" },
+      {
+        pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+        message: "Please enter a valid email",
+      },
+    ],
+  };
+  //loop on formData
+  Object.entries(expense).forEach(([key, value]) => {
+    validationConfig[key].forEach((rule) => {
+      if (rule.required && !value) {
+        errorsData[key] = rule.message;
+      }
+      if (rule.minLength && value.length > 0 && value.length < 5) {
+        errorsData[key] = rule.message;
+      }
+      if (rule.pattern && value) {
+        if (!rule.pattern.test(value)) {
+          errorsData[key] = rule.message;
+        }
+      }
+    });
+  });
 
   //validation function
   const validate = (FormData) => {
-    const errorsData = {};
-    if (!FormData.title) {
-      errorsData.title = "*Title is required";
-    }
-    if (!FormData.category) {
-      errorsData.category = "*Category is required";
-    }
-    if (!FormData.amount) {
-      errorsData.amount = "*Amount is required";
-    }
     setErrors(errorsData);
     return errorsData;
   };
@@ -62,11 +88,18 @@ export default function ({ setExpenses }) {
     });
   };
 
-  console.log(expense);
+  // console.log(expense);
 
   const handleChange = (e) => {
-    console.log(e.target);
+    // console.log(e.target);
     const { name, value } = e.target;
+    if (name == "amount") {
+      setExpense((prevState) => ({
+        ...prevState,
+        [name]: Number(value),
+      }));
+      return;
+    }
     setExpense((prevState) => ({
       ...prevState,
       [name]: value,
@@ -76,58 +109,45 @@ export default function ({ setExpenses }) {
   return (
     <>
       <form className="expense-form" onSubmit={handleSubmit}>
-        <div className="input-container">
-          <label htmlFor="title">Title</label>
-          <input
-            // ref={titleRef}
-            id="title"
-            name="title"
-            value={expense.title}
-            onChange={handleChange}
-          />
-          <p className="error">{errors.title}</p>
-        </div>
-        <div className="input-container">
-          <label htmlFor="category">Category</label>
-          <select
-            // ref={categoryRef}
-            id="category"
-            name="category"
-            value={expense.category}
-            onChange={(e) =>
-              setExpense((prevState) => ({
-                ...prevState,
-                category: e.target.value,
-              }))
-            }
-          >
-            <option value="" hidden>
-              Select Category
-            </option>
-            <option value="grocery">Grocery</option>
-            <option value="clothes">Clothes</option>
-            <option value="bills">Bills</option>
-            <option value="education">Education</option>
-            <option value="medicine">Medicine</option>
-          </select>
-          <p className="error">{errors.category}</p>
-        </div>
-        <div className="input-container">
-          <label htmlFor="amount">Amount</label>
-          <input
-            // ref={amountRef}
-            id="amount"
-            name="amount"
-            value={expense.amount}
-            onChange={(e) =>
-              setExpense((prevState) => ({
-                ...prevState,
-                amount: Number(e.target.value),
-              }))
-            }
-          />
-          <p className="error">{errors.amount}</p>
-        </div>
+        <Input
+          label="Title"
+          id="title"
+          name="title"
+          value={expense.title}
+          onChange={handleChange}
+          error={errors.title}
+        ></Input>
+        <Select
+          id="category"
+          name="category"
+          value={expense.category}
+          onChange={handleChange}
+          error={errors.category}
+          firstOption="Select Category"
+          options={{
+            grocery: "Grocery",
+            clothes: "Clothes",
+            bills: "Bills",
+            education: "Education",
+            medicine: "Medicine",
+          }}
+        ></Select>
+        <Input
+          label="Amount"
+          id="amount"
+          name="amount"
+          value={expense.amount}
+          onChange={handleChange}
+          error={errors.amount}
+        ></Input>
+        <Input
+          label="Email"
+          id="email"
+          name="email"
+          value={expense.email}
+          onChange={handleChange}
+          error={errors.email}
+        ></Input>
         <button className="add-btn">Add</button>
       </form>
     </>
