@@ -9,7 +9,6 @@ export default function ({ setExpenses }) {
     title: "",
     category: "",
     amount: "",
-    email: "",
   });
 
   // const titleRef = useRef(null);
@@ -30,13 +29,6 @@ export default function ({ setExpenses }) {
     ],
     category: [{ required: true, message: "Please select category" }],
     amount: [{ required: true, message: "Please enter an amount" }],
-    email: [
-      { required: true, message: "Please enter an email" },
-      {
-        pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
-        message: "Please enter a valid email",
-      },
-    ],
   };
   //loop on formData
   Object.entries(expense).forEach(([key, value]) => {
@@ -139,14 +131,6 @@ export default function ({ setExpenses }) {
           value={expense.amount}
           onChange={handleChange}
           error={errors.amount}
-        ></Input>
-        <Input
-          label="Email"
-          id="email"
-          name="email"
-          value={expense.email}
-          onChange={handleChange}
-          error={errors.email}
         ></Input>
         <button className="add-btn">Add</button>
       </form>
