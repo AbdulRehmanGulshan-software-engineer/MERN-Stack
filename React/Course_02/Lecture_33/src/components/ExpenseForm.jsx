@@ -3,14 +3,13 @@ import "../App.css";
 import Input from "./input";
 import Select from "./Select";
 
-export default function ({ setExpenses }) {
-  //single state controlling all three
-  const [expense, setExpense] = useState({
-    title: "",
-    category: "",
-    amount: "",
-  });
-
+export default function ({
+  setExpenses,
+  expense,
+  setExpense,
+  editingRowID,
+  setEditingRowID,
+}) {
   // const titleRef = useRef(null);
   // const categoryRef = useRef(null);
   // const amountRef = useRef(null);
@@ -28,11 +27,20 @@ export default function ({ setExpenses }) {
       { minLength: 5, message: "Title should be at least 5 characters long" },
     ],
     category: [{ required: true, message: "Please select category" }],
-    amount: [{ required: true, message: "Please enter an amount" }],
+    amount: [
+      {
+        required: true,
+        message: "Please enter an amount",
+      },
+      {
+        pattern: /^[1-9]\d*$/,
+        message: "Please enter a valid number",
+      },
+    ],
   };
   //loop on formData
-  Object.entries(expense).forEach(([key, value]) => {
-    validationConfig[key].forEach((rule) => {
+  Object.entries(expense || {}).forEach(([key, value]) => {
+    validationConfig[key]?.forEach((rule) => {
       if (rule.required && !value) {
         errorsData[key] = rule.message;
       }
@@ -69,9 +77,22 @@ export default function ({ setExpenses }) {
     const validateResult = validate(expense);
     if (Object.keys(validateResult).length) return;
 
+    if (editingRowID) {
+      setExpenses((prevState) =>
+        prevState.map((prevExpense) => {
+          if (prevExpense.id === editingRowID) {
+            return { ...expense, id: editingRowID };
+          }
+          return prevExpense;
+        }),
+      );
+      setEditingRowID("");
+      return;
+    }
+
     setExpenses((prevState) => [
       ...prevState,
-      { ...expense, id: crypto.randomUUID() },
+      { ...expense, amount: Number(expense.amount), id: crypto.randomUUID() },
     ]);
     setExpense({
       title: "",
@@ -88,7 +109,7 @@ export default function ({ setExpenses }) {
     if (name == "amount") {
       setExpense((prevState) => ({
         ...prevState,
-        [name]: Number(value),
+        [name]: value,
       }));
       return;
     }
@@ -132,7 +153,7 @@ export default function ({ setExpenses }) {
           onChange={handleChange}
           error={errors.amount}
         ></Input>
-        <button className="add-btn">Add</button>
+        <button className="add-btn">{editingRowID ? "Save" : "Add"}</button>
       </form>
     </>
   );

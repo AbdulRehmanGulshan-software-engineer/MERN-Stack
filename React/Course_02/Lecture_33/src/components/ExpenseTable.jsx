@@ -4,7 +4,12 @@ import useTotal from "../../hooks/useTotal";
 import { useFilter } from "../../hooks/useFilter";
 import ContextMenu from "./ContextMenu";
 
-export default function ExpenseTable({ expenses, setExpenses }) {
+export default function ExpenseTable({
+  expenses,
+  setExpense,
+  setExpenses,
+  setEditingRowID,
+}) {
   //filter functionality
   const [category, setCategory] = useState("");
   const [filteredData, setQuery] = useFilter(expenses, (data) => data.category);
@@ -16,9 +21,12 @@ export default function ExpenseTable({ expenses, setExpenses }) {
     <>
       <ContextMenu
         menuPosition={menuPosition}
+        setExpense={setExpense}
         setMenuPosition={setMenuPosition}
         setExpenses={setExpenses}
         rowID={rowID}
+        expenses={expenses}
+        setEditingRowID={setEditingRowID}
       ></ContextMenu>
       <table className="expense-table" onClick={() => setMenuPosition({})}>
         <thead>
