@@ -19,6 +19,7 @@ export default function ContextMenu({
           if (foundExpense) {
             setExpense({
               ...foundExpense,
+              amount: Number(foundExpense.amount),
               category: foundExpense.category.toLowerCase(),
             });
             setEditingRowID(rowID);

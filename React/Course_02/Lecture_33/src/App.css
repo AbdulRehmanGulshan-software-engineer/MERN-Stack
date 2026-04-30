@@ -191,6 +191,10 @@ main {
   background-color: #ddd;
 }
 
+.clear-sort {
+  cursor: pointer;
+}
+
 /* Responsive */
 @media (max-width: 900px) {
   .expense-tracker {
