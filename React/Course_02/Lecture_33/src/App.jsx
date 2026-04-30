@@ -12,7 +12,7 @@ export default function App() {
       <main>
         <h1>Track Your Expense</h1>
         <ExpenseForm setExpenses={setExpenses} />
-        <ExpenseTable expenses={expenses} />
+        <ExpenseTable expenses={expenses} setExpenses={setExpenses} />
       </main>
     </>
   );
