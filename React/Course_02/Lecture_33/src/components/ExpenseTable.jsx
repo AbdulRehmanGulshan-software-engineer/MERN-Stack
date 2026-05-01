@@ -11,8 +11,11 @@ export default function ExpenseTable({
   setEditingRowID,
 }) {
   //filter functionality
-  const [category, setCategory] = useState("");
-  const [filteredData, setQuery] = useFilter(expenses, (data) => data.category);
+  // const [category, setCategory] = useState("");
+  const [filteredData, query, setQuery] = useFilter(
+    expenses,
+    (data) => data.category,
+  );
   const total = useTotal(filteredData);
   const [menuPosition, setMenuPosition] = useState({});
   const [rowID, setRowID] = useState("");
@@ -78,7 +81,10 @@ export default function ExpenseTable({
               </div>
             </th>{" "}
             <th>
-              <select onChange={(e) => setQuery(e.target.value.toLowerCase())}>
+              <select
+                value={query}
+                onChange={(e) => setQuery(e.target.value.toLowerCase())}
+              >
                 <option value="">All</option>
                 <option value="grocery">Grocery</option>
                 <option value="clothes">Clothes</option>
