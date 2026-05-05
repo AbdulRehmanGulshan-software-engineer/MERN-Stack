@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import Modal from "./Modal";
 
-export default function Contact() {
+export function Contact() {
   const [isOpen, setIsOpen] = useState(false);
-
   return (
     <>
       <h1 className="text-2xl caret-lime-50">This is contact Page</h1>
