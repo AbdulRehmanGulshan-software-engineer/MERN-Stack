@@ -24,7 +24,7 @@ import { createStore } from "redux"
 
 
 const initialState = {
-    post: 0,
+    post: 20,
     name: 'Abdul Rehman Gulshan',
     age: 26
 }
@@ -81,14 +81,28 @@ function reducer(state = initialState, action) {
 // reduxState = reducer(reduxState, { type: 'post/incrementBy', payload: 2 })
 // console.log(reduxState)
 
-const store = createStore(reducer)
+
+//Added Store Enhancer  __REDUX_DEVTOOLS_EXTENSION__
+const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__?.())
+const postCountElement = document.querySelector('.post-count')
 
 console.log(store)
 
 store.subscribe(() => {
     console.log(store.getState())
+    postCountElement.innerText = store.getState().post
 })
+
+postCountElement.innerText = store.getState().post
 
 store.dispatch({ type: INCREMENT })
 store.dispatch({ type: INCREMENT })
 store.dispatch({ type: INCREASE_BY, payload: 20 })
+
+setTimeout(()=>{
+    store.dispatch({type: DECREMENT})
+},2000)
+
+postCountElement.addEventListener('click',()=>{
+    store.dispatch({ type: INCREMENT })
+})
