@@ -1,117 +1,69 @@
-// let state = {
-//     count: 0,
-//     counterName: 'Timer',
-//     age: 21
-// }
-
-// function increment() {
-//     // Mutating State 👇
-//     // state.count = state.count + 1
-
-//     const prevState = state;
-//     console.log(prevState)
-//     // Without Mutating 👇
-//     state = {...state, count: state.count + 1 }
-//     console.log(`New State Is : ${state}`)
-//     console.log(prevState==state)
-// }
-
-// increment()
-
-
-
 import { createStore } from "redux"
-import { myCreateStore } from "./my-redux"
-
+import { productsList } from "./productsList"
 
 const initialState = {
-    post: 20,
-    name: 'Abdul Rehman Gulshan',
-    age: 26
+    products: productsList,
+    cartItems: [],
+    wishList: []
 }
 
-const INCREMENT = 'post/increment'
-const DECREMENT = 'post/decrement'
-const INCREASE_BY = 'post/incrementBy'
-const DECREASE_BY = 'post/decrementBy'
+const CART_ADD_ITEM = 'cart/addItem'
+const CART_REMOVE_ITEM = 'cart/removeItem'
+const CART_ITEM_INCREASE_QUANTITY = 'cart/increaseItemQuantity'
+const CART_ITEM_DECREASE_QUANTITY = 'cart/decreaseItemQuantity'
 
-// redux restrict us to make reducer function
+const WISHLIST_ADD_ITEM = 'wishList/addItem'
+const WISHLIST_REMOVE_ITEM = 'wishList/removeItem'
+
 function reducer(state = initialState, action) {
-    // if (action.type === INCREASE_BY) {
-    //     return { ...state, post: state.post + action.payload }
-    // }
-    // else if (action.type === INCREMENT) {
-    //     return { ...state, post: state.post + 1 }
-    // }
-    // else if (action.type === DECREMENT) {
-    //     return { ...state, post: state.post - 1 }
-    // }
-    // else if (action.type === DECREASE_BY) {
-    //     return { ...state, post: state.post - action.payload }
-    // }
-
-    // Using Switch Statement 👇
     switch (action.type) {
-        case INCREMENT:
-            return { ...state, post: state.post + 1 }
-        case DECREMENT:
-            return { ...state, post: state.post - 1 }
-        case INCREASE_BY:
-            return { ...state, post: state.post + action.payload }
-        case DECREASE_BY:
-            return { ...state, post: state.post - action.payload }
+        case 'cart/addItem':
+            return { ...state, cartItems: [...state.cartItems, action.payload] }
+        case 'cart/removeItem':
+            return { ...state, cartItems: [...state.cartItems.filter((cartItem) => cartItem.productID !== action.payload.productID)] }
+        case 'cart/increaseItemQuantity':
+            return {
+                ...state, cartItems: state.cartItems.map((cartItem) => {
+                    if (cartItem.productID === action.payload.productID) {
+                        return { ...cartItem, quantity: cartItem.quantity + 1 }
+                    }
+                    return cartItem
+                })
+            }
+        case 'cart/decreaseItemQuantity':
+            return {
+                ...state, cartItems: state.cartItems.map((cartItem) => {
+                    if (cartItem.productID === action.payload.productID) {
+                        return { ...cartItem, quantity: cartItem.quantity - 1 }
+                    }
+                    return cartItem
+                })
+                    .filter((cartItem) => cartItem.quantity > 0)
+            }
+        case 'wishList/addItem':
+            return { ...state, wishList: [...state.wishList, action.payload] }
+        case 'wishList/removeItem':
+            return { ...state, wishList: [...state.wishList.filter((wishListItem) => wishListItem.productID !== action.payload.productID)] }
+
         default:
             return state
     }
-
-
-    // state = { ...state, post: state.post + 1 }   ⚠️
-    // redux says you don't need to touch state.i will update it.redux will give state to reducer function 
-    //we just have to return state 👇
-
-    return state;
 }
-
-//what redux will do
-// reduxState = reducer(reduxState, { type: 'post/increment' })
-// console.log(reduxState)
-// reduxState = reducer(reduxState, { type: 'post/increment' })
-// console.log(reduxState)
-// reduxState = reducer(reduxState, { type: 'post/decrement' })
-// console.log(reduxState)
-// reduxState = reducer(reduxState, { type: 'post/incrementBy', payload: 2 })
-// console.log(reduxState)
-
 
 //Added Store Enhancer  __REDUX_DEVTOOLS_EXTENSION__
 const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__?.())
-const myStore = myCreateStore(reducer)
-
-console.log(myStore)
-
-const postCountElement = document.querySelector('.post-count')
 
 console.log(store)
 
-myStore.subscribe(() => {
-    console.log(myStore.getState())
-    postCountElement.innerText = myStore.getState().post
-})
-
-postCountElement.innerText = myStore.getState().post
-
-// store.dispatch({ type: INCREMENT })
-// store.dispatch({ type: INCREMENT })
-// store.dispatch({ type: INCREASE_BY, payload: 20 })
-
-myStore.dispatch({ type: INCREMENT })
-myStore.dispatch({ type: INCREMENT })
-myStore.dispatch({ type: INCREASE_BY, payload: 20 })
-
-setTimeout(() => {
-    store.dispatch({ type: DECREMENT })
-}, 2000)
-
-postCountElement.addEventListener('click', () => {
-    store.dispatch({ type: INCREMENT })
-})
+store.dispatch({ type: CART_ADD_ITEM, payload: { productID: 1, quantity: 1 } })
+store.dispatch({ type: CART_ADD_ITEM, payload: { productID: 4, quantity: 1 } })
+store.dispatch({ type: CART_ADD_ITEM, payload: { productID: 18, quantity: 1 } })
+store.dispatch({ type: CART_REMOVE_ITEM, payload: { productID: 18 } })
+store.dispatch({ type: CART_ITEM_INCREASE_QUANTITY, payload: { productID: 4 } })
+store.dispatch({ type: CART_ITEM_DECREASE_QUANTITY, payload: { productID: 4 } })
+store.dispatch({ type: CART_ITEM_DECREASE_QUANTITY, payload: { productID: 4 } })
+store.dispatch({ type: CART_ITEM_DECREASE_QUANTITY, payload: { productID: 4 } })
+store.dispatch({ type: CART_ITEM_DECREASE_QUANTITY, payload: { productID: 4 } })
+store.dispatch({ type: CART_ITEM_DECREASE_QUANTITY, payload: { productID: 4 } })
+store.dispatch({ type: WISHLIST_ADD_ITEM, payload: { productID: 4 } })
+store.dispatch({ type: WISHLIST_REMOVE_ITEM, payload: { productID: 4 } })
