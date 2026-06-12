@@ -1,10 +1,37 @@
 // Action Types
-export const CART_ADD_ITEM = 'cart/addItem'
-export const CART_REMOVE_ITEM = 'cart/removeItem'
-export const CART_ITEM_INCREASE_QUANTITY = 'cart/increaseItemQuantity'
-export const CART_ITEM_DECREASE_QUANTITY = 'cart/decreaseItemQuantity'
+const CART_ADD_ITEM = 'cart/addItem'
+const CART_REMOVE_ITEM = 'cart/removeItem'
+const CART_ITEM_INCREASE_QUANTITY = 'cart/increaseItemQuantity'
+const CART_ITEM_DECREASE_QUANTITY = 'cart/decreaseItemQuantity'
 
-export default function cartReducer(state = [], action) {
+//Action Creators
+export function decreaseCartItemQuantity(productID) {
+    return {
+        type: CART_ITEM_DECREASE_QUANTITY,
+        payload: { productID },
+    }
+}
+export function increaseCartItemQuantity(productID) {
+    return {
+        type: CART_ITEM_INCREASE_QUANTITY,
+        payload: { productID },
+    }
+}
+export function cartRemoveItem(productID) {
+    return {
+        type: CART_REMOVE_ITEM,
+        payload: { productID }
+    }
+}
+export function cartAddItem(productID, quantity = 1) {
+    return {
+        type: CART_ADD_ITEM,
+        payload: { productID, quantity }
+    }
+}
+
+//Reducer
+export default function cartReducer(state = [], action = { type: '' }) {
     switch (action.type) {
         case 'cart/addItem':
             return [...state, action.payload]
