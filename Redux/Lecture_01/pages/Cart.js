@@ -1,6 +1,6 @@
 import React from 'react'
 import CartItem from '../components/CartItem'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from '../react-redux'
 
 export default function Cart() {
   const cartItems = useSelector((state) => {
@@ -10,8 +10,8 @@ export default function Cart() {
   console.log(cartItems)
 
   const total = cartItems.reduce((total, item) => {
-  return total + Math.round(item.quantity * item.price * 100) / 100;
-}, 0);
+    return total + Math.round(item.quantity * item.price * 100) / 100;
+  }, 0);
 
   const dispatch = useDispatch()
 

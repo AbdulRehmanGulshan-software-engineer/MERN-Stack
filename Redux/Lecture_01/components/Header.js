@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector } from '../react-redux'
 import { Link } from 'react-router-dom'
 // import cartIcon from '../assets/cartIcon.svg'
 import cartIcon from 'url:../assets/cartIcon.svg'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch } from '../react-redux'
 import { cartAddItem, decreaseCartItemQuantity, increaseCartItemQuantity } from '../store/cartReducer'
 
 export default function CartItem({ productID, title, rating, price, imageUrl, quantity }) {
