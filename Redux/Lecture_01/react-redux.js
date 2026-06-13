@@ -9,7 +9,6 @@ export function Provider({ children, store }) {
     useEffect(() => {
         {
             store.subscribe(() => {
-                console.log(store.getState())
                 setState(store.getState())
             })
         }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from '../react-redux'
-import { cartAddItem, decreaseCartItemQuantity, increaseCartItemQuantity } from '../store/cartReducer'
+import { cartAddItem, decreaseCartItemQuantity, increaseCartItemQuantity } from '../store/slices/cartSlice'
 
 export default function CartItem({ productID, title, rating, price, imageUrl, quantity }) {
 

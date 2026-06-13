@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from '../react-redux'
-import { cartAddItem } from '../store/cartReducer'
+import { cartAddItem } from '../store/slices/cartSlice.js'
 import Success from './Success.jsx'
 
 export default function Product({
