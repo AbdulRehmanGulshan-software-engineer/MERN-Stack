@@ -23,29 +23,36 @@ export function cartRemoveItem(productID) {
         payload: { productID }
     }
 }
-export function cartAddItem(productID, quantity = 1) {
+export function cartAddItem(productData) {
     return {
         type: CART_ADD_ITEM,
-        payload: { productID, quantity }
+        payload: productData
     }
 }
 
 //Reducer
 export default function cartReducer(state = [], action = { type: '' }) {
     switch (action.type) {
-        case 'cart/addItem':
-            return [...state, action.payload]
-        case 'cart/removeItem':
+        case CART_ADD_ITEM:
+            const existingItem = state.find((cartItem) => cartItem.productID === action.payload.productID)
+            if (existingItem) return state.map((cartItem) => {
+                if (cartItem.productID === existingItem.productID) {
+                    return { ...cartItem, quantity: cartItem.quantity + 1 }
+                }
+                return cartItem
+            })
+            return [...state, { ...action.payload, quantity: 1 }]
+        case CART_REMOVE_ITEM:
             return state.filter(
                 (cartItem) => cartItem.productID !== action.payload.productID)
-        case 'cart/increaseItemQuantity':
+        case CART_ITEM_INCREASE_QUANTITY:
             return state.map((cartItem) => {
                 if (cartItem.productID === action.payload.productID) {
                     return { ...cartItem, quantity: cartItem.quantity + 1 }
                 }
                 return cartItem
             })
-        case 'cart/decreaseItemQuantity':
+        case CART_ITEM_DECREASE_QUANTITY:
             return state
                 .map((cartItem) => {
                     if (cartItem.productID === action.payload.productID) {
