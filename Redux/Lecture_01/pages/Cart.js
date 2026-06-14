@@ -7,8 +7,6 @@ export default function Cart() {
     return state.cartItems
   })
 
-  console.log(cartItems)
-
   const total = cartItems.reduce((total, item) => {
     return total + Math.round(item.quantity * item.price * 100) / 100;
   }, 0);

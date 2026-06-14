@@ -1,3 +1,5 @@
+import { produce } from "immer"
+
 // Action Types
 const CART_ADD_ITEM = 'cart/addItem'
 const CART_REMOVE_ITEM = 'cart/removeItem'
@@ -31,38 +33,37 @@ export function cartAddItem(productData) {
 }
 
 //Reducer
-export default function cartReducer(state = [], action = { type: '' }) {
-    switch (action.type) {
-        case CART_ADD_ITEM:
-            const existingItem = state.find((cartItem) => cartItem.productID === action.payload.productID)
-            if (existingItem) return state.map((cartItem) => {
-                if (cartItem.productID === existingItem.productID) {
-                    return { ...cartItem, quantity: cartItem.quantity + 1 }
-                }
-                return cartItem
-            })
-            return [...state, { ...action.payload, quantity: 1 }]
-        case CART_REMOVE_ITEM:
-            return state.filter(
-                (cartItem) => cartItem.productID !== action.payload.productID)
-        case CART_ITEM_INCREASE_QUANTITY:
-            return state.map((cartItem) => {
-                if (cartItem.productID === action.payload.productID) {
-                    return { ...cartItem, quantity: cartItem.quantity + 1 }
-                }
-                return cartItem
-            })
-        case CART_ITEM_DECREASE_QUANTITY:
-            return state
-                .map((cartItem) => {
-                    if (cartItem.productID === action.payload.productID) {
-                        return { ...cartItem, quantity: cartItem.quantity - 1 }
-                    }
-                    return cartItem
-                })
-                .filter((cartItem) => cartItem.quantity > 0)
+export default function cartReducer(orignalState = [], action = { type: '' }) {
+    return produce(orignalState, (state) => {
 
-        default:
-            return state
-    }
+        // finding existing
+        const existingItemIndex = state.findIndex(
+            (cartItem) => cartItem.productID === action.payload.productID
+        )
+
+        switch (action.type) {
+            case CART_ADD_ITEM:
+                if (existingItemIndex !== -1) {
+                    state[existingItemIndex].quantity += 1;
+                    break
+                }
+                state.push({ ...action.payload, quantity: 1 })
+                break
+
+            case CART_REMOVE_ITEM:
+                state.splice(existingItemIndex, 1);
+                break
+
+            case CART_ITEM_INCREASE_QUANTITY:
+                state[existingItemIndex].quantity += 1;
+                break
+
+            case CART_ITEM_DECREASE_QUANTITY:
+                state[existingItemIndex].quantity -= 1;
+                if (state[existingItemIndex].quantity === 0) {
+                    state.splice(existingItemIndex, 1)
+                }
+        }
+        return state
+    })
 }

@@ -4,6 +4,8 @@ import wishListReducer, { addWishList, removeWishList } from "../store/slices/wi
 import productReducer from "../store/slices/productsSlice"
 import { decreaseCartItemQuantity } from "../store/slices/cartSlice"
 // import { productsList } fromed/productsList"
+import { produce } from 'immer'
+import { use } from "react"
 
 
 //Combined All Reducers
@@ -17,7 +19,40 @@ const reducer = combineReducers({
 //Added Store Enhancer  __REDUX_DEVTOOLS_EXTENSION__
 export const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__?.())
 
-// console.log(store)
+const users = [
+    {
+        name: 'Abdul',
+        age: 20,
+    },
+    {
+        name: 'Rehman',
+        age: 21,
+    },
+    {
+        name: 'Gulshan',
+        age: 19,
+    },
+]
+
+// // NonFunctional
+// users[1].age = 20
+// console.log(users)
+
+// //Functional
+// const newUsers = users.map((user, i) => {
+//     if (i == 1) {
+//         return { ...user, age: 20 }
+//     }
+//     return user
+// })
+
+// //immutable using immer
+// const newUsers = produce(users, (userCopy) => {
+//     console.log(users)
+//     console.log(userCopy)
+//     userCopy[1].age = 20
+// })
+// console.log(newUsers)
 
 // store.dispatch(cartAddItem(4))
 // store.dispatch(cartAddItem(1))
