@@ -18,14 +18,14 @@ export default function CartItem({ productID, title, rating, price, imageUrl, qu
       <div className="item-price">${price}</div>
       <div className="item-quantity">
         <button onClick={() => {
-          dispatch(decreaseCartItemQuantity(productID))
+          dispatch(decreaseCartItemQuantity({productID}))
         }}>-</button>
         <span>{quantity}</span>
         <button onClick={() => {
-          dispatch(increaseCartItemQuantity(productID))
+          dispatch(increaseCartItemQuantity({productID}))
         }}>+</button>
         <button onClick={()=>{
-          dispatch(cartRemoveItem(productID))
+          dispatch(cartRemoveItem({productID}))
         }}>
           Remove
         </button>

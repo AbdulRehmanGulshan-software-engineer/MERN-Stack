@@ -1,4 +1,4 @@
-import { createStore, combineReducers } from "redux"
+// import { createStore, combineReducers } from "redux"
 import cartReducer, { cartAddItem, cartRemoveItem, increaseCartItemQuantity } from "../store/slices/cartSlice"
 import wishListReducer, { addWishList, removeWishList } from "../store/slices/wishListSlice"
 import productReducer from "../store/slices/productsSlice"
@@ -6,18 +6,25 @@ import { decreaseCartItemQuantity } from "../store/slices/cartSlice"
 // import { productsList } fromed/productsList"
 import { produce } from 'immer'
 import { use } from "react"
+import { configureStore } from "@reduxjs/toolkit"
 
 
-//Combined All Reducers
-const reducer = combineReducers({
-    products: productReducer,
-    cartItems: cartReducer,
-    wishList: wishListReducer
-})
+// //Combined All Reducers
+// const reducer = combineReducers({
+//     products: productReducer,
+//     cartItems: cartReducer,
+//     wishList: wishListReducer
+// })
 
 
 //Added Store Enhancer  __REDUX_DEVTOOLS_EXTENSION__
-export const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__?.())
+export const store = configureStore({
+    reducer: {
+        products: productReducer,
+        cartItems: cartReducer,
+        wishList: wishListReducer
+    }
+})
 
 const users = [
     {
