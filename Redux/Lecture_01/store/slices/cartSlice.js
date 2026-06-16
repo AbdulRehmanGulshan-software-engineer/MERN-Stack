@@ -1,5 +1,6 @@
 // import { produce } from "immer"
 import { createSlice } from '@reduxjs/toolkit'
+import { myCreateSlice } from '../../redux-toolkit';
 
 // // Action Types
 // const CART_ADD_ITEM = 'cart/addItem'
@@ -72,10 +73,10 @@ import { createSlice } from '@reduxjs/toolkit'
 
 
 const findItemIndex = (state, action) =>
- state.findIndex(
+    state.findIndex(
         cartItem => cartItem.productID === action.payload.productID
     )
-   
+
 
 //CreateSlice Function
 const slice = createSlice({
@@ -111,12 +112,48 @@ const slice = createSlice({
     }
 })
 
+const mySlice = myCreateSlice(
+    {
+        name: 'cart',
+        initialState: [],
+        reducers: {
+            cartAddItem(state, action) {
+                const existingItemIndex = findItemIndex(state, action)
+                if (existingItemIndex !== -1) {
+                    state[existingItemIndex].quantity += 1;
+
+                } else {
+                    state.push({ ...action.payload, quantity: 1 })
+                }
+            },
+            cartRemoveItem(state, action) {
+                const existingItemIndex = findItemIndex(state, action)
+                state.splice(existingItemIndex, 1);
+            },
+            increaseCartItemQuantity(state, action) {
+                const existingItemIndex = findItemIndex(state, action)
+                state[existingItemIndex].quantity += 1;
+            },
+            decreaseCartItemQuantity(state, action) {
+                const existingItemIndex = findItemIndex(state, action)
+                state[existingItemIndex].quantity -= 1;
+                if (state[existingItemIndex].quantity === 0) {
+                    state.splice(existingItemIndex, 1)
+                }
+                // console.log(action.payload)
+            },
+
+        }
+    }
+)
+
+console.log(mySlice)
 
 export const {
     cartAddItem,
     cartRemoveItem,
     increaseCartItemQuantity,
     decreaseCartItemQuantity
-} = slice.actions
+} = mySlice.actions
 
-export default slice.reducer
+export default mySlice.reducer
