@@ -7,6 +7,7 @@ import { decreaseCartItemQuantity } from "../store/slices/cartSlice"
 import { produce } from 'immer'
 import { use } from "react"
 import { configureStore } from "@reduxjs/toolkit"
+import { analytics, auth, logger } from "./middleware/logger"
 
 
 // //Combined All Reducers
@@ -17,13 +18,35 @@ import { configureStore } from "@reduxjs/toolkit"
 // })
 
 
+// //currying Middleware function
+// function logger(store) {
+//     return function (next) {
+//         return function (action) {
+//             console.log('store: ', store)
+//             console.log('next: ', next)
+//             console.log('action: ', action)
+//             next(action)
+//         }
+//     }
+// }
+
+
+// const logger = (store) => (next) => (action) => {
+//     console.log('store: ', store)
+//     console.log('next: ', next)
+//     console.log('action: ', action)
+//     next(action)
+// }
+
+
 //Added Store Enhancer  __REDUX_DEVTOOLS_EXTENSION__
 export const store = configureStore({
     reducer: {
         products: productReducer,
         cartItems: cartReducer,
         wishList: wishListReducer
-    }
+    },
+    middleware: () => [logger,auth,analytics],
 })
 
 const users = [
