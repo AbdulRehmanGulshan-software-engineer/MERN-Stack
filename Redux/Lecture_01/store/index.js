@@ -46,7 +46,8 @@ export const store = configureStore({
         cartItems: cartReducer,
         wishList: wishListReducer
     },
-    middleware: () => [logger,auth,analytics],
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(logger, auth, analytics),
 })
 
 const users = [

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch } from '../react-redux'
+import { useDispatch } from 'react-redux'
 import { cartAddItem } from '../store/slices/cartSlice.js'
 import Success from './Success.jsx'
 
@@ -16,11 +16,7 @@ export default function Product({
   const handleAddToCart = () => {
     dispatch(
       cartAddItem({
-        productID,
-        title,
-        rating,
-        price,
-        imageUrl,
+        productID
       })
     )
 

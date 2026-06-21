@@ -21,7 +21,7 @@ export default function wishListReducer(state = [], action) {
         case 'wishList/addItem':
             return [...state, action.payload]
         case 'wishList/removeItem':
-            return [state.filter((wishListItem) => wishListItem.productID !== action.payload.productID)]
+            return state.filter((wishListItem) => wishListItem.productID !== action.payload.productID)
 
         default:
             return state

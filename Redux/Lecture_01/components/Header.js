@@ -1,11 +1,40 @@
-import React, { useState } from 'react'
-import { useSelector } from '../react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 // import cartIcon from '../assets/cartIcon.svg'
 import cartIcon from 'url:../assets/cartIcon.svg'
+import { fetchProducts, fetchProductsError, updateAllProducts } from '../store/slices/productsSlice'
+import { productsList } from '../store/productsList'
+import { fetchCartItems, fetchCartItemsError, loadCartItems } from '../store/slices/cartSlice'
+
 
 export default function Header() {
-  const cartItems = useSelector((state) => state.cartItems)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchProducts())
+    fetch('https://fakestoreapi.com/products')
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch(updateAllProducts(data))
+      }).catch(() => {
+        dispatch(fetchProductsError())
+      })
+
+    dispatch(fetchCartItems())
+    // loaded cart item data from fakeAPI
+    fetch('https://fakestoreapi.com/carts/5')
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch(loadCartItems(data))
+      }).catch(() => {
+        dispatch(fetchCartItemsError())
+      })
+
+  }, [])
+
+
+  const cartItems = useSelector((state) => state.cartItems.list)
 
   //Total Quantity
   const totalQuantity = cartItems.reduce((total, item) => {
