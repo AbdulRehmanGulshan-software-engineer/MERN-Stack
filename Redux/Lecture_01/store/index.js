@@ -8,6 +8,7 @@ import { produce } from 'immer'
 import { use } from "react"
 import { configureStore } from "@reduxjs/toolkit"
 import { analytics, auth, logger } from "./middleware/logger"
+import { apiMiddleware } from "./middleware/api"
 
 
 // //Combined All Reducers
@@ -46,8 +47,12 @@ export const store = configureStore({
         cartItems: cartReducer,
         wishList: wishListReducer
     },
+
+    // middleware: (getDefaultMiddleware) =>
+    //     getDefaultMiddleware().concat(logger, auth, analytics),
+
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(logger, auth, analytics),
+        getDefaultMiddleware().concat(apiMiddleware),
 })
 
 const users = [

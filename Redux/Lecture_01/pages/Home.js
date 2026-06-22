@@ -2,11 +2,12 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import Product from '../components/products'
 import CartItemShimmer from './ProductGridShimmer'
+import { getAllProducts, getProductError, getLoadingState } from '../store/slices/productsSlice'
 
 export default function Home() {
-  const productsList = useSelector((state) => state.products.list)
-  const isLoading = useSelector((state) => state.products.loading)
-  const error = useSelector((state) => state.products.error)
+  const productsList = useSelector(getAllProducts)
+  const isLoading = useSelector(getLoadingState)
+  const error = useSelector(getProductError)
 
   useSelector(console.log)
 
