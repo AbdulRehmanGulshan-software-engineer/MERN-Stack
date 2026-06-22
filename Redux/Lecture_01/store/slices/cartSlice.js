@@ -91,9 +91,9 @@ export const getCartItems = createSelector(
 
                 return product
                     ? {
-                          ...product,
-                          quantity,
-                      }
+                        ...product,
+                        quantity,
+                    }
                     : null
             })
             .filter(Boolean)
@@ -104,6 +104,19 @@ export const getCartLoadingState = state =>
 
 export const getCartError = state =>
     state.cartItems.error
+
+//Thunk action Creator
+export const fetchCartItemsData = () => (dispatch) => {
+    dispatch(fetchCartItems())
+    fetch(`https://fakestoreapi.com/carts/5`)
+        .then((res) => res.json())
+        .then((data) => {
+            dispatch(loadCartItems(data))
+        })
+        .catch(() => {
+            dispatch(fetchCartItemsError())
+        })
+}
 
 export const {
     cartAddItem,

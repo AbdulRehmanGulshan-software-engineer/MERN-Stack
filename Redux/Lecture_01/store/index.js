@@ -9,6 +9,7 @@ import { use } from "react"
 import { configureStore } from "@reduxjs/toolkit"
 import { analytics, auth, logger } from "./middleware/logger"
 import { apiMiddleware } from "./middleware/api"
+import { func } from "./middleware/func"
 
 
 // //Combined All Reducers
@@ -51,8 +52,13 @@ export const store = configureStore({
     // middleware: (getDefaultMiddleware) =>
     //     getDefaultMiddleware().concat(logger, auth, analytics),
 
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(apiMiddleware),
+    middleware: (getDefaultMiddleware) => [
+        ...getDefaultMiddleware(),
+        apiMiddleware,
+        logger,
+        auth, analytics
+    ]
+
 })
 
 const users = [

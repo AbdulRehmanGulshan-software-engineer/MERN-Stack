@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 // import cartIcon from '../assets/cartIcon.svg'
 import cartIcon from 'url:../assets/cartIcon.svg'
-import { fetchProducts, fetchProductsError, updateAllProducts } from '../store/slices/productsSlice'
+import { fetchProductsData } from '../store/slices/productsSlice'
 import { productsList } from '../store/productsList'
-import { fetchCartItems, fetchCartItemsError, loadCartItems } from '../store/slices/cartSlice'
+import { fetchCartItemsData } from '../store/slices/cartSlice'
 import { fetchData } from '../store/middleware/api'
 
 
@@ -14,23 +14,8 @@ export default function Header() {
   const dispatch = useDispatch()
   useEffect(() => {
 
-    dispatch(fetchData(
-      {
-        url: 'products',
-        onStart: fetchProducts.type,
-        onSuccess: updateAllProducts.type,
-        onError: fetchProductsError.type,
-      }
-    ))
-
-    dispatch(fetchData(
-      {
-        url: 'carts/5',
-        onStart: fetchCartItems.type,
-        onSuccess: loadCartItems.type,
-        onError: fetchCartItemsError.type,
-      }
-    ))
+    dispatch(fetchProductsData())
+    dispatch(fetchCartItemsData())
 
     // dispatch(fetchProducts())
     // fetch('https://fakestoreapi.com/products')
