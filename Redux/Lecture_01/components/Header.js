@@ -7,7 +7,7 @@ import cartIcon from 'url:../assets/cartIcon.svg'
 import { fetchProductsData } from '../store/slices/productsSlice'
 import { productsList } from '../store/productsList'
 import { fetchCartItemsData } from '../store/slices/cartSlice'
-import { fetchData } from '../store/middleware/api'
+// import { fetchData } from '../store/middleware/api'
 
 
 export default function Header() {

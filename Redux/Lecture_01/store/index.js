@@ -55,8 +55,6 @@ export const store = configureStore({
     middleware: (getDefaultMiddleware) => [
         ...getDefaultMiddleware(),
         apiMiddleware,
-        logger,
-        auth, analytics
     ]
 
 })

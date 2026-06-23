@@ -1,9 +1,20 @@
-import { createSelector, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit'
 
 const findItemIndex = (list, action) =>
     list.findIndex(
         cartItem => cartItem.productID === action.payload.productID
     )
+
+// Used Async Thunk By RTK, followed convention
+export const fetchCartItemsData = createAsyncThunk('cart/fetchCartItems', async () => {
+    try {
+        const response = await fetch('https://fakestoreapi.com/carts/5')
+        return response.json()
+    } catch (err) {
+        throw err
+    }
+})
+
 
 const slice = createSlice({
     name: 'cart',
@@ -54,24 +65,17 @@ const slice = createSlice({
                 }
             }
         },
-
-        fetchCartItems(state) {
-            state.loading = true
-        },
-
-        fetchCartItemsError(state, action) {
+    },
+    extraReducers: (builder) => {
+        builder.addCase(fetchCartItemsData.pending, (state) => {
+            state.loading = true;
+        }).addCase(fetchCartItemsData.fulfilled, (state, action) => {
+            state.loading = false
+            state.list = action.payload.products
+        }).addCase(fetchCartItemsData.rejected, (state, action) => {
             state.loading = false
             state.error = action.payload || 'Something Went Wrong!'
-        },
-
-        loadCartItems(state, action) {
-            state.loading = false
-
-            state.list = action.payload.products.map(item => ({
-                productID: item.productId,
-                quantity: item.quantity,
-            }))
-        },
+        })
     },
 })
 
@@ -84,9 +88,9 @@ export const getCartItems = createSelector(
     [selectProducts, selectCartList],
     (products, cartList) =>
         cartList
-            .map(({ productID, quantity }) => {
+            .map(({ productId, quantity }) => {
                 const product = products.find(
-                    product => product.id === productID
+                    product => product.id === productId
                 )
 
                 return product
@@ -105,27 +109,24 @@ export const getCartLoadingState = state =>
 export const getCartError = state =>
     state.cartItems.error
 
-//Thunk action Creator
-export const fetchCartItemsData = () => (dispatch) => {
-    dispatch(fetchCartItems())
-    fetch(`https://fakestoreapi.com/carts/5`)
-        .then((res) => res.json())
-        .then((data) => {
-            dispatch(loadCartItems(data))
-        })
-        .catch(() => {
-            dispatch(fetchCartItemsError())
-        })
-}
+// //Thunk action Creator
+// export const fetchCartItemsData = () => (dispatch) => {
+//     dispatch(fetchCartItems())
+//     fetch(`https://fakestoreapi.com/carts/5`)
+//         .then((res) => res.json())
+//         .then((data) => {
+//             dispatch(loadCartItems(data))
+//         })
+//         .catch(() => {
+//             dispatch(fetchCartItemsError())
+//         })
+// }
 
 export const {
     cartAddItem,
     cartRemoveItem,
     increaseCartItemQuantity,
     decreaseCartItemQuantity,
-    loadCartItems,
-    fetchCartItems,
-    fetchCartItemsError,
 } = slice.actions
 
 export default slice.reducer
