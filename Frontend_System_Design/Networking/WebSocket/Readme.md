@@ -1,0 +1,1 @@
+What we will do : will implement a chat application to understand the concept of WebSocket
