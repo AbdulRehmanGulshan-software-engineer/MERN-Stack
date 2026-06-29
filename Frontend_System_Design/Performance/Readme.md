@@ -1,0 +1,1 @@
+in this proj we need to install npm package @vite/preload-webpack-plugin for applying preload functionality

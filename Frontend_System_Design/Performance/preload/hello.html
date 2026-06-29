@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chatwoot</title>
+</head>
+<body>
+
+<script>
+  window.chatwootSettings = {
+    // Appearance
+    position: "right",
+    type: "expanded_bubble",
+    launcherTitle: "Chat With Us",
+    darkMode: "dark",
+
+    // Language
+    locale: "en",
+    useBrowserLanguage: true,
+
+    // Features
+    showUnreadMessagesDialog: true,
+  };
+
+  (function (d, t) {
+    const BASE_URL = "https://chat.aichowk.com";
+
+    // Prevent duplicate SDK loading
+    if (d.getElementById("chatwoot-sdk")) return;
+
+    const g = d.createElement(t);
+    const s = d.getElementsByTagName(t)[0];
+
+    g.id = "chatwoot-sdk";
+    g.src = `${BASE_URL}/packs/js/sdk.js`;
+    g.async = true;
+
+    g.onload = function () {
+      if (window.chatwootSDK) {
+        window.chatwootSDK.run({
+          websiteToken: "QtVCZWmMNTChymZkNEvEN4Lm",
+          baseUrl: BASE_URL,
+        });
+      }
+    };
+
+    s.parentNode.insertBefore(g, s);
+  })(document, "script");
+</script>
+
+</body>
+</html>
