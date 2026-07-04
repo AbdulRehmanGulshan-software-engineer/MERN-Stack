@@ -1,0 +1,42 @@
+/* universel selector */
+/* *{
+    margin: 0px;
+    padding: 0px;
+} */
+
+h1 {
+  background-color: aqua;
+  height: 300px;
+  width: 300px;
+  /* display: inline; */
+  border: 10px solid orange;
+  padding: 20px;
+  /* display: inline-block; */
+  box-sizing: content-box;
+}
+
+h2 {
+  background-color: brown;
+  height: 300px;
+  width: 300px;
+  /* display: inline-block; */
+  border: 10px solid orange;
+  padding: 20px;
+  box-sizing: border-box;
+  /* margin: 20px; */
+}
+
+span {
+  /* background-color: aquamarine; */
+  /* will not apply height, width and margin----- only allow horizontal padding and margin */
+  height: 200px;
+  width: 300px;
+  padding: 20px;
+  /* margin: 20px; */
+
+  /* will not work */
+  margin-top: 150px;
+  margin-bottom: 150px;
+
+  /* padding: 50px; */
+}

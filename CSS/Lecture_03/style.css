@@ -1,0 +1,16 @@
+h1 {
+  background-color: blue;
+}
+/* #firstId {
+  background-color: pink;
+}
+.classA {
+  background-color: green;
+}
+li{
+    background-color: bisque;
+} */
+
+h1{
+    background-color: pink !important;
+}

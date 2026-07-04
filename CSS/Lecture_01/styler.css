@@ -1,0 +1,45 @@
+h1{
+    background-color: pink;
+    font-size: 30px;
+}
+ul{
+    background-color: aquamarine;
+}
+#first{
+    background-color: bisque;
+}
+.firstClass{
+    background-color: brown;
+}
+
+/* group based selection */
+h1 , .first {
+    background-color: wheat;
+} 
+
+h1{
+    background-color: rgb(54, 69, 69);
+}
+.firstClass{
+    font-size: 50px;
+}
+
+li{
+    /* depends on parent if parent size is 20px, 1em means childs 20 px, 2em means 40px */
+    font-size: 1em;     
+}
+
+li{
+    /* 2 percent of view port width */
+    font-size: 2vw;
+}
+
+li{
+    /* 2 prcent of view port height */
+    font-size: 2vh;
+    font-family: 'Courier New', Courier, monospace;
+    font-style: italic;
+
+    /* means 50 percent of my parent */
+    /* font-size: 50%; */
+}
