@@ -16,7 +16,7 @@ export default function Product({
   const handleAddToCart = () => {
     dispatch(
       cartAddItem({
-        productID
+        productId: productID
       })
     )
 

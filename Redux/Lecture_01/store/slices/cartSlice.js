@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit'
 
 const findItemIndex = (list, action) =>
-    list.findIndex(
-        cartItem => cartItem.productID === action.payload.productID
-    )
+  list.findIndex(
+    cartItem => cartItem.productId === action.payload.productId
+  )
 
 // Used Async Thunk By RTK, followed convention
 export const fetchCartItemsData = createAsyncThunk('cart/fetchCartItems', async () => {
