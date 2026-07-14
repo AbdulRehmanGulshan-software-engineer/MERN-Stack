@@ -9,7 +9,7 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(userRouter);
-app.use(hostRouter);
+app.use("/host",hostRouter);
 
 //Adding 404. sab uper walo ko chance mil gya aor ab is pe aa jae ga
 app.use((req, res, next) => {
