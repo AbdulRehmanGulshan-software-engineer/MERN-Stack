@@ -1,0 +1,21 @@
+{
+  "name": "airbnb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "Abdul Rehman Gulshan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.5.2",
+    "nodemon": "^3.1.14",
+    "postcss": "^8.5.19",
+    "tailwindcss": "^3.4.19"
+  }
+}
