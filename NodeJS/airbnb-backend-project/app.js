@@ -7,6 +7,7 @@ const express = require('express');
 //Local Modules
 const userRouter = require('./routes/userRouter');
 const hostRouter = require('./routes/hostRouter');
+const rootDir = require("./utils/pathUtil");
 
 const app = express();
 
@@ -16,7 +17,7 @@ app.use("/host", hostRouter);
 
 //Adding 404. sab uper walo ko chance mil gya aor ab is pe aa jae ga
 app.use((req, res, next) => {
-    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
+    res.status(404).sendFile(path.join(rootDir, 'views', '404.html'));
 })
 
 
