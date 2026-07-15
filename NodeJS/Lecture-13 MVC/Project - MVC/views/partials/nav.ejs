@@ -4,8 +4,15 @@
       <li>
         <a
           href="/"
+          class="<%= currentPage === 'index' ? 'bg-red-400' : 'hover:bg-red-400' %> py-2 px-4 rounded transition duration-300"
+          >Airbnb</a
+        >
+      </li>
+      <li>
+        <a
+          href="/homes"
           class="<%= currentPage === 'Home' ? 'bg-red-400' : 'hover:bg-red-400' %> py-2 px-4 rounded transition duration-300"
-          >Home</a
+          >Homes-List</a
         >
       </li>
       <li>
@@ -14,6 +21,30 @@
           class="<%= currentPage === 'addHome' ? 'bg-red-400' : 'hover:bg-red-400' %> py-2 px-4 rounded transition duration-300"
           >Add Home</a
         >
+      </li>
+      <li>
+        <a
+          href="/favourites"
+          class="<%= currentPage === 'favourites  ' ? 'bg-red-400' : 'hover:bg-red-400' %> py-2 px-4 rounded transition duration-300"
+          >Favourites</a
+        >
+      </li>
+       <li>
+        <a
+          href="/bookings"
+          class="<%= currentPage === 'bookings' ? 'bg-red-400' : 'hover:bg-red-400' %> py-2 px-4 rounded transition duration-300"
+          >Bookings</a
+        >
+      </li>
+       <li>
+        <a
+          href="/host/host-home-list"
+          class="<%= currentPage === 'host-homes' ? 'bg-red-400' : 'hover:bg-red-400' %> py-2 px-4 rounded transition duration-300"
+          >Host Homes</a
+        >
+      </li>
+      </li>
+      </li>
       </li>
     </ul>
   </nav>

@@ -1,12 +1,12 @@
-<%- include('partials/head') %>
+<%- include('../partials/head') %>
 </head>
 
 <body>
-  <%- include('partials/nav') %>
+  <%- include('../partials/nav') %>
 
   <main class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-10 max-w-6xl">
     <h2 class="text-3xl text-red-500 font-bold text-center mb-6">
-      Here are our registered homes:
+      Hey Host! here are your homes:
     </h2>
 
     <div class="flex flex-wrap justify-center gap-6">
@@ -51,7 +51,10 @@
                 </span>
               </div>
             </div>
-
+            <button class="bg-blue-500 p-1 rounded mt-3">Edit</button>
+            <button class="bg-red-500 p-1 rounded mt-3">Delete</button>
+            
+            
           </div>
         </div>
 
