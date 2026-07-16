@@ -27,7 +27,7 @@ exports.getFavouriteList = (req, res, next) => {
 
             const favouritesWithDetails = favourites
                 .map(homeId =>
-                    registeredHomes.find(home => home.id.toString() === homeId.toString())
+                    registeredHomes.find(home => home.id === homeId)
                 )
                 .filter(Boolean);
 
@@ -43,7 +43,20 @@ exports.getFavouriteList = (req, res, next) => {
 };
 
 exports.postAddtoFavourite = (req, res, next) => {
-    Favourite.addToFavourite(req.body.id, error => {
+    const homeId = req.body.id;
+
+    Favourite.addToFavourite(homeId, (error) => {
+        if (error) {
+            console.log(error);
+        }
+        res.redirect("/favourites");
+    });
+};
+
+exports.postRemoveFromFavourite = (req, res, next) => {
+    const homeId = req.params.homeId;
+
+    Favourite.deleteById(homeId, (error) => {
         if (error) {
             console.log(error);
         }
