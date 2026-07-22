@@ -1,36 +1,43 @@
-const { getDB } = require("../utils/databaseUtil");
-const { ObjectId } = require("mongodb");
+/*
+Mongoose Model Methods:
 
-//making class
-module.exports = class Favourite {
+Create:
+new Home({...})
+home.save()
 
-    constructor(houseId) {
-        this.houseId = houseId;
+Read:
+Home.find()
+Home.findById(id)
+Home.findOne({...})
+
+Update:
+Home.findByIdAndUpdate(id, {...})
+Home.updateOne({...}, {...})
+
+Delete:
+Home.findByIdAndDelete(id)
+Home.deleteOne({...})
+
+Validation:
+required
+min
+max
+minLength
+maxLength
+enum
+match
+*/
+
+const mongoose = require('mongoose');
+
+const favouriteSchema = new mongoose.Schema({
+    houseId: {
+        type: String,
+        ref: "Home",
+        required: true
     }
+});
 
-    save() {
-        const db = getDB();
+module.exports = mongoose.model('Favourite', favouriteSchema);
 
-        return db.collection("favourites")
-            .findOne({ houseId: this.houseId })
-            .then(existingFavourite => {
-                if (existingFavourite) {
-                    return existingFavourite; // already exists
-                }
-
-                return db.collection("favourites").insertOne(this);
-            });
-    }
-
-    static getFavourites() {
-        const db = getDB();
-        return db.collection('favourites').find()
-            .toArray()
-    }
-
-    static deleteById(homeId) {
-        const db = getDB();
-        return db.collection("favourites")
-            .deleteOne({ houseId: homeId });
-    }
-};
+// now we can use Mongoose's built-in models methods

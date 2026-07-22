@@ -1,63 +1,26 @@
-const { ObjectId } = require("mongodb");
-const { getDB } = require("../utils/databaseUtil");
+/*
 
-//making class
-module.exports = class Home {
-    constructor(houseName, price, location, rating, photoUrl, description, _id) {
-        this.houseName = houseName;
-        this.price = price;
-        this.location = location;
-        this.rating = rating;
-        this.photoUrl = photoUrl;
-        this.description = description;
-        if (_id) {
-            this._id = _id;
-        }
+*
+save()
+find()
+findById()
+update()
+deleteById()
+*
 
-    }
+*/
 
-    save() {
-        const db = getDB();
-        return db.collection("homes").insertOne(this);
-    }
+const mongoose = require('mongoose');
 
+//making schema
+// _id is automatically added by mongoose
+const homeSchema = new mongoose.Schema({
+    houseName: { type: String, required: true },
+    price: { type: Number, required: true, min: 0 },
+    location: { type: String, required: true },
+    rating: { type: Number, required: true, min: 1, max: 5 },
+    photoUrl: String,
+    description: String
+});
 
-    // i have build my update separately,  not added this logic in save function
-    update() {
-        const db = getDB();
-
-        return db.collection("homes").updateOne(
-            { _id: new ObjectId(this._id) },
-            {
-                $set: {
-                    houseName: this.houseName,
-                    price: this.price,
-                    location: this.location,
-                    rating: this.rating,
-                    photoUrl: this.photoUrl,
-                    description: this.description
-                }
-            }
-        );
-    }
-
-    static fetchAll() {
-        const db = getDB();
-        return db.collection('homes').find()
-            .toArray()
-    }
-
-    static findById(homeId) {
-        const db = getDB();
-        return db.collection('homes').find({ _id: new ObjectId(String(homeId)) })
-            .next()
-    }
-
-    //static method that will take id and delete home
-    static deleteById(homeId) {
-        const db = getDB();
-        return db
-            .collection("homes")
-            .deleteOne({ _id: new ObjectId(String(homeId)) });
-    }
-}
+module.exports = mongoose.model("Home", homeSchema);
