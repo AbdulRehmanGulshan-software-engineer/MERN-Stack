@@ -1,0 +1,252 @@
+<%- include('../partials/head') %>
+  </head>
+  <body>
+    <%- include('../partials/nav') %>
+
+    <main class="container mx-auto mt-8 p-8 bg-white rounded-lg shadow-md">
+      <h1 class="text-3xl font-bold mb-6 text-center text-gray-800">
+       New Here? Sign Up
+      </h1>
+
+      <form action="/signup" method="POST" class="max-w-md mx-auto">
+        <%- include('../partials/errors') %>
+
+        <input
+          type="text"
+          name="firstName"
+          placeholder="First Name"
+          value="<%= oldInput?.firstName || '' %>"
+          required
+          class="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+        />
+
+        <input
+          type="text"
+          name="lastName"
+          placeholder="Last Name"
+          value="<%= oldInput?.lastName || '' %>"
+          class="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+        />
+
+        <input
+          type="email"
+          name="email"
+          placeholder="Enter your Email"
+          value="<%= oldInput?.email || '' %>"
+          required
+          class="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+        />
+
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter your Password"
+          required
+          class="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+        />
+
+        <input
+          type="password"
+          name="confirmPassword"
+          placeholder="ReEnter your Password"
+          required
+          class="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+        />
+        
+        <!-- User Type Selection -->
+<div class="mb-6">
+  <p class="mb-3 text-sm font-semibold text-gray-700">
+    Choose your account type
+  </p>
+
+  <div class="grid grid-cols-2 gap-4">
+
+    <!-- Guest Option -->
+    <label class="group relative cursor-pointer">
+      <input
+        type="radio"
+        name="userType"
+        value="guest"
+        class="peer sr-only"
+        <%= oldInput?.userType === 'guest' ? 'checked' : '' %>
+        required
+      />
+
+      <div
+        class="flex flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-4 text-center transition-all duration-300 hover:border-red-300 hover:bg-red-50/50 peer-checked:border-red-500 peer-checked:bg-red-50 peer-checked:shadow-md"
+      >
+        <!-- Guest Icon -->
+        <div
+          class="mb-2 flex h-11 w-11 items-center justify-center rounded-full bg-gray-100 text-gray-500 transition-all duration-300 group-hover:bg-red-100 group-hover:text-red-500 peer-checked:bg-red-500 peer-checked:text-white"
+        >
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19a3 3 0 01-6 0m9-7a6 6 0 10-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9z"
+            />
+          </svg>
+        </div>
+
+        <span class="text-sm font-semibold text-gray-800">
+          Guest
+        </span>
+
+        <span class="mt-1 text-xs text-gray-500">
+          Find and book homes
+        </span>
+      </div>
+
+      <!-- Selected Check -->
+      <div
+        class="absolute right-3 top-3 hidden h-5 w-5 items-center justify-center rounded-full bg-red-500 text-white peer-checked:flex"
+      >
+        <svg
+          class="h-3 w-3"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="3"
+            d="M5 13l4 4L19 7"
+          />
+        </svg>
+      </div>
+    </label>
+
+    <!-- Host Option -->
+    <label class="group relative cursor-pointer">
+      <input
+        type="radio"
+        name="userType"
+        value="host"
+        class="peer sr-only"
+        <%= oldInput?.userType === 'host' ? 'checked' : '' %>
+      />
+
+      <div
+        class="flex flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-4 text-center transition-all duration-300 hover:border-red-300 hover:bg-red-50/50 peer-checked:border-red-500 peer-checked:bg-red-50 peer-checked:shadow-md"
+      >
+        <!-- Host Icon -->
+        <div
+          class="mb-2 flex h-11 w-11 items-center justify-center rounded-full bg-gray-100 text-gray-500 transition-all duration-300 group-hover:bg-red-100 group-hover:text-red-500 peer-checked:bg-red-500 peer-checked:text-white"
+        >
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6M9 10h.01M12 10h.01M15 10h.01"
+            />
+          </svg>
+        </div>
+
+        <span class="text-sm font-semibold text-gray-800">
+          Host
+        </span>
+
+        <span class="mt-1 text-xs text-gray-500">
+          List and manage homes
+        </span>
+      </div>
+
+      <!-- Selected Check -->
+      <div
+        class="absolute right-3 top-3 hidden h-5 w-5 items-center justify-center rounded-full bg-red-500 text-white peer-checked:flex"
+      >
+        <svg
+          class="h-3 w-3"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="3"
+            d="M5 13l4 4L19 7"
+          />
+        </svg>
+      </div>
+    </label>
+
+  </div>
+</div>
+
+
+<!-- Terms and Conditions -->
+<div class="mb-6">
+  <label
+    class="group flex cursor-pointer items-start gap-3 rounded-xl border border-gray-200 bg-gray-50 p-4 transition-all duration-300 hover:border-red-200 hover:bg-red-50/50"
+  >
+    <input
+      type="checkbox"
+      name="termsAccepted"
+      required
+      class="peer sr-only"
+    />
+
+    <!-- Custom Checkbox -->
+    <span
+      class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border-2 border-gray-300 bg-white text-white transition-all duration-200 peer-checked:border-red-500 peer-checked:bg-red-500"
+    >
+      <svg
+        class="hidden h-3.5 w-3.5 peer-checked:block"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="3"
+          d="M5 13l4 4L19 7"
+        />
+      </svg>
+    </span>
+
+    <span class="text-sm leading-5 text-gray-600">
+      I agree to the
+      <a
+        href="/terms"
+        class="font-semibold text-red-500 underline-offset-2 hover:text-red-600 hover:underline"
+      >
+        Terms & Conditions
+      </a>
+      and
+      <a
+        href="/privacy"
+        class="font-semibold text-red-500 underline-offset-2 hover:text-red-600 hover:underline"
+      >
+        Privacy Policy
+      </a>.
+    </span>
+  </label>
+</div>
+
+        <!-- Sign Up Button -->
+          <input
+          type="submit"
+          value="Sign Up"
+          class="w-full bg-red-500 text-white py-2 rounded-md hover:bg-red-600 transition duration-300"
+        />
+        
+    </form>
+
+    </main>
+  </body>
+</html>
